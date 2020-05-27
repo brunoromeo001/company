@@ -1,0 +1,22 @@
+{
+    "name":"brunoromeo001/company",
+    "authors": [
+        {
+            "name": "Bruno Romeo",
+            "email": "brunogfvot@hotmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim":"4.*",
+        "slim/psr7": "^1.0",
+        "rain/raintpl":"3.0.0",
+        "twig/twig":"^3.0",
+        "phpmailer/phpmailer": "~6.1"
+        
+    },
+    "autoload": {
+        "psr-4": {
+            "Company\\": "vendor\\company\\php-classes\\src"
+        }
+    } 
+}
