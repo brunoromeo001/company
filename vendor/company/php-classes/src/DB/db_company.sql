@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 27-Maio-2020 às 21:55
--- Versão do servidor: 5.7.26
+-- Generation Time: 30-Maio-2020 às 17:09
+-- Versão do servidor: 8.0.20
 -- versão do PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -62,24 +62,25 @@ DELIMITER ;
 
 DROP TABLE IF EXISTS `tb_pricing`;
 CREATE TABLE IF NOT EXISTS `tb_pricing` (
-  `id_pricing` int(11) NOT NULL AUTO_INCREMENT,
-  `plan` varchar(100) DEFAULT NULL,
+  `id_pricing` int NOT NULL AUTO_INCREMENT,
+  `plan` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `pricing` decimal(10,2) DEFAULT NULL,
-  `deteils` tinytext,
-  `advanced` enum('Sim','Não') DEFAULT NULL,
+  `deteils` tinytext CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `advanced` enum('Sim','Não') CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `dt_create` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_pricing`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_pricing`
 --
 
-INSERT INTO `tb_pricing` (`id_pricing`, `plan`, `pricing`, `deteils`, `advanced`, `dt_create`) VALUES
-(2, '3213213', '10.00', 'sa dsa dsad sad sad ad ', 'Sim', '2020-05-26 22:41:33'),
-(3, 'oi', '10.00', 'as jskld jksldjklsajdklsajdklasjkldjsalkdlskadklasjlk', 'Sim', '2020-05-26 23:15:46'),
-(4, 'oi', '10.00', 'as jskld jksldjklsajdklsajdklasjkldjsalkdlskadklasjlk', 'Sim', '2020-05-26 23:15:55'),
-(5, 'oi', '10.00', 'as jskld jksldjklsajdklsajdklasjkldjsalkdlskadklasjlk', 'Sim', '2020-05-26 23:16:28');
+INSERT INTO `tb_pricing` (`id_pricing`, `plan`, `pricing`, `deteils`, `advanced`, `active`) VALUES
+(1, 'Business', '19.00', 'Aida dere\r\n    Nec feugiat nisl\r\n    Nulla at volutpat dola\r\n    Pharetra massa\r\n    Massa ultricies mi\r\n', 'Não', 1),
+(2, 'Developer', '29.00', '\r\n    Aida dere\r\n    Nec feugiat nisl\r\n    Nulla at volutpat dola\r\n    Pharetra massa\r\n    Massa ultricies mi\r\n', 'Não', 0),
+(3, 'Ultimate', '49.00', '\r\n    Aida dere\r\n    Nec feugiat nisl\r\n    Nulla at volutpat dola\r\n    Pharetra massa\r\n    Massa ultricies mi\r\n', 'Sim', 0),
+(4, 'Free', '0.00', 'Aida dere\r\nNec feugiat nisl\r\nNulla at volutpat dola', 'Não', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,14 +1,14 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Pricing
-        <small>Lista de planos</small>
+        Testimonials
+        <small>Lista das testemunhas</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>        
-        <li class="active">Pricing</li>
+        <li class="active">Testimonials</li>
       </ol>
     </section>
 
@@ -19,7 +19,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Adcionar Plano</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Adcionar Contato</button>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -37,25 +37,24 @@
                 <tbody>
                   <tr>
                     <th>ID</th>
-                    <th>Plano</th>
-                    <th>Valor</th>
-                    <th>Detalhes</th>
-                    <th>Avançado</th> 
-                    <th>Ação</th> 
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Empresa</th>
+                    <th>Depoimento</th>                    
+                    <th>Ação</th>    
                   </tr>
-                  {loop="$pricings"} 
                   <tr>
-                    <td>{$value.id_pricing}</td>
-                    <td>{$value.plan}</td>
-                    <td>R$ {$value.pricing} / Mês</td>
-                    <td>{$value.deteils} </td>
-                    <td>{$value.advanced}</td>
+                    <td>1</td>
+                    <td><img src="/res/assets/img/testimonials/testimonials-2.jpg" alt="User Image" class="img-circle img-sm"></td>
+                    <td>Renata Gomes</td>
+                    <td>Registrada</td>
+                    <td> Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</td>
                     <td>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                      <a href="/admin/pricing/{$value.id_pricing}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  {/loop}
+                  
                 </tbody>
               </table>
             </div>

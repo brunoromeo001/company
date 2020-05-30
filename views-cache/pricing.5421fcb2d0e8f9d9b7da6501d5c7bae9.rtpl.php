@@ -1,4 +1,4 @@
-  <main id="main">
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
@@ -21,18 +21,18 @@
 
         <div class="row">
 
-          {loop="$plans"}
+          <?php $counter1=-1;  if( isset($plans) && ( is_array($plans) || $plans instanceof Traversable ) && sizeof($plans) ) foreach( $plans as $key1 => $value1 ){ $counter1++; ?>
           <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
-            {if="$value.active =='1'"}
+            <?php if( $value1["active"] =='1' ){ ?>
             <div class="box featured">
-            {else}
+            <?php }else{ ?>
             <div class="box">
-            {/if}
-              {if="$value.advanced =='Sim'"}
+            <?php } ?>
+              <?php if( $value1["advanced"] =='Sim' ){ ?>
               <span class="advanced">Advanced</span>
-              {/if}
-              <h3>{$value.plan}</h3>
-              <h4><sup>R$</sup>{$value.pricing}<span> / mês</span></h4>
+              <?php } ?>
+              <h3><?php echo $value1["plan"]; ?></h3>
+              <h4><sup>R$</sup><?php echo $value1["pricing"]; ?><span> / mês</span></h4>
               <ul>                
                 <li>Aida dere</li>
                 <li>Nec feugiat nisl</li>
@@ -45,7 +45,7 @@
               </div>
             </div>
           </div>
-          {/loop}
+          <?php } ?>
         </div>
 
       </div>

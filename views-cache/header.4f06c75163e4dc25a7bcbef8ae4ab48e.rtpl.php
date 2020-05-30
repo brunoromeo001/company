@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -335,26 +335,26 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        {if="$pageName == 'admin'"}
+        <?php if( $pageName == 'admin' ){ ?>
         <li class="active">
           <a href="/admin">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>            
           </a>          
         </li>
-        {else}
+        <?php }else{ ?>
         <li>
           <a href="/admin">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>            
           </a>          
         </li>
-        {/if}
+        <?php } ?>
         <li>          
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Home</span>
           </a>          
         </li>
-        {if="substr_count($pageName, 'aboutus')"}
+        <?php if( substr_count($pageName, 'aboutus') ){ ?>
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -369,7 +369,7 @@
             <li><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
-        {elseif="substr_count($pageName, 'team')"}
+        <?php }elseif( substr_count($pageName, 'team') ){ ?>
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -384,7 +384,7 @@
             <li><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
-        {elseif="substr_count($pageName, 'testimonials')"}
+        <?php }elseif( substr_count($pageName, 'testimonials') ){ ?>
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -399,7 +399,7 @@
             <li class="active"><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
-        {else}
+        <?php }else{ ?>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -414,56 +414,56 @@
             <li><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
-        {/if}
-        {if="$pageName == 'services'"}
+        <?php } ?>
+        <?php if( $pageName == 'services' ){ ?>
         <li class="active">
           <a href="/admin/services">
             <i class="fa fa-laptop"></i> <span>Services</span>            
           </a>
         </li>
-        {else}
+        <?php }else{ ?>
         <li>
           <a href="/admin/services">
             <i class="fa fa-laptop"></i> <span>Services</span>            
           </a>
         </li>
-        {/if}
+        <?php } ?>
         <li>
           <a href="#">
             <i class="fa fa-edit"></i> <span>Portfolio</span>            
           </a>
         </li>
-        {if="$pageName == 'pricing'"}
+        <?php if( $pageName == 'pricing' ){ ?>
         <li class='active'>
           <a href="/admin/pricing">
             <i class="fa fa-money"></i> <span>Pricing</span>            
           </a>          
         </li>
-        {else}
+        <?php }else{ ?>
         <li>
           <a href="/admin/pricing">
             <i class="fa fa-money"></i> <span>Pricing</span>            
           </a>          
         </li>
-        {/if}
+        <?php } ?>
         <li>
           <a href="#">
             <i class="fa fa-calendar"></i> <span>Blog</span>            
           </a>
         </li>
-        {if="$pageName == 'contact'"}
+        <?php if( $pageName == 'contact' ){ ?>
         <li class="active">
           <a href="/admin/contact">
             <i class="fa fa-envelope"></i> <span>Contact</span>            
           </a>
         </li>
-        {else}
+        <?php }else{ ?>
         <li>
           <a href="/admin/contact">
             <i class="fa fa-envelope"></i> <span>Contact</span>            
           </a>
         </li>
-        {/if}
+        <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->

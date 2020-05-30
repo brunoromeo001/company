@@ -1,4 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -43,19 +43,19 @@
                     <th>Avançado</th> 
                     <th>Ação</th> 
                   </tr>
-                  {loop="$pricings"} 
+                  <?php $counter1=-1;  if( isset($pricings) && ( is_array($pricings) || $pricings instanceof Traversable ) && sizeof($pricings) ) foreach( $pricings as $key1 => $value1 ){ $counter1++; ?> 
                   <tr>
-                    <td>{$value.id_pricing}</td>
-                    <td>{$value.plan}</td>
-                    <td>R$ {$value.pricing} / Mês</td>
-                    <td>{$value.deteils} </td>
-                    <td>{$value.advanced}</td>
+                    <td><?php echo $value1["id_pricing"]; ?></td>
+                    <td><?php echo $value1["plan"]; ?></td>
+                    <td>R$ <?php echo $value1["pricing"]; ?> / Mês</td>
+                    <td><?php echo $value1["deteils"]; ?> </td>
+                    <td><?php echo $value1["advanced"]; ?></td>
                     <td>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                      <a href="/admin/pricing/{$value.id_pricing}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/pricing/<?php echo $value1["id_pricing"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  {/loop}
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

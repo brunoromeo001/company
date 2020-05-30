@@ -12,8 +12,8 @@ class Pricing extends Model{
 		
 		$sql = new Sql();
 		
-		$results = $sql->select("SELECT * FROM tb_pricing WHERE id_pricing = {id_pricing}", [
-			'{id_pricing}'=>$id_pricing
+		$results = $sql->select("SELECT * FROM tb_pricing WHERE id_pricing = :id_pricing", [
+			':id_pricing'=>$id_pricing
 		]);
 		
 		$this->setData($results[0]);
@@ -24,7 +24,7 @@ class Pricing extends Model{
 
     $sql = new Sql();
 
-    return $sql->select("SELECT * FROM tb_pricing");    
+    return $sql->select("SELECT * FROM tb_pricing ORDER BY pricing ");    
 
   }
 
