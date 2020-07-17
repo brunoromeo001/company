@@ -17,8 +17,12 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/res/admin/dist/css/skins/_all-skins.min.css">  
+   <!-- iCheck for checkboxes and radio inputs -->
+   <link rel="stylesheet" href="/res/admin/plugins/iCheck/all.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="/res/admin/bower_components/select2/dist/css/select2.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="/res/admin/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
   <!-- Morris chart -->
   <link rel="stylesheet" href="/res/admin/bower_components/morris.js/morris.css">
   <!-- jvectormap -->
@@ -348,13 +352,22 @@
           </a>          
         </li>
         {/if}
-        <li>          
-          <a href="#">
+        {if="$pageName == 'home'"}
+        <li class="active">          
+          <a href="/admin/home">
             <i class="fa fa-files-o"></i>
             <span>Home</span>
           </a>          
         </li>
-        {if="substr_count($pageName, 'aboutus')"}
+        {else}
+        <li>          
+          <a href="/admin/home">
+            <i class="fa fa-files-o"></i>
+            <span>Home</span>
+          </a>          
+        </li>
+        {/if}
+        {if="substr_count($pageName, 'about-us')"}
         <li class="treeview active">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
@@ -364,8 +377,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> About us</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Team</a></li>
+            <li class="active"><a href="/admin/about-us"><i class="fa fa-circle-o"></i> About us</a></li>
+            <li><a href="/admin/team"><i class="fa fa-circle-o"></i> Team</a></li>
             <li><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
@@ -379,8 +392,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> About us</a></li>
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Team</a></li>
+            <li><a href="/admin/about-us"><i class="fa fa-circle-o"></i> About us</a></li>
+            <li class="active"><a href="/admin/team"><i class="fa fa-circle-o"></i> Team</a></li>
             <li><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
@@ -394,8 +407,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> About us</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Team</a></li>
+            <li><a href="/admin/about-us"><i class="fa fa-circle-o"></i> About us</a></li>
+            <li><a href="/admin/team"><i class="fa fa-circle-o"></i> Team</a></li>
             <li class="active"><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
@@ -409,8 +422,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> About us</a></li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Team</a></li>
+            <li class="active"><a href="/admin/about-us"><i class="fa fa-circle-o"></i> About us</a></li>
+            <li><a href="/admin/team"><i class="fa fa-circle-o"></i> Team</a></li>
             <li><a href="/admin/testimonials"><i class="fa fa-circle-o"></i> Testimonials</a></li>            
           </ul>
         </li>
@@ -428,11 +441,19 @@
           </a>
         </li>
         {/if}
-        <li>
-          <a href="#">
+        {if="$pageName == 'portfolio'"}
+        <li class="active">
+          <a href="/admin/portfolio">
             <i class="fa fa-edit"></i> <span>Portfolio</span>            
           </a>
         </li>
+        {else}
+        <li>
+          <a href="/admin/portfolio">
+            <i class="fa fa-edit"></i> <span>Portfolio</span>            
+          </a>
+        </li>
+        {/if}
         {if="$pageName == 'pricing'"}
         <li class='active'>
           <a href="/admin/pricing">
@@ -446,11 +467,19 @@
           </a>          
         </li>
         {/if}
-        <li>
-          <a href="#">
+        {if="$pageName == 'blog'"}
+        <li class="active">
+          <a href="/admin/blog">
             <i class="fa fa-calendar"></i> <span>Blog</span>            
           </a>
         </li>
+        {else}
+        <li>
+          <a href="/admin/blog">
+            <i class="fa fa-calendar"></i> <span>Blog</span>            
+          </a>
+        </li>
+        {/if}
         {if="$pageName == 'contact'"}
         <li class="active">
           <a href="/admin/contact">

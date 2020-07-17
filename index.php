@@ -9,24 +9,6 @@ require_once('vendor/autoload.php');
 
 $app = AppFactory::create();
 
-//Inicio do codigo para erro 404
-$errorMiddleware = $app->addErrorMiddleware(true, true, true);
-
-$errorMiddleware->setErrorHandler(\Slim\Exception\HttpNotFoundException::class, function (
-    \Psr\Http\Message\ServerRequestInterface $request,
-    \Throwable $exception,
-    bool $displayErrorDetails,
-    bool $logErrors,
-    bool $logErrorDetails
-) {
-    $response = new \Slim\Psr7\Response();
-    
-    echo"Pagina nao encontrada";
-
-    return $response->withStatus(404);
-});
-//Final do codigo para erro 404
-
 require_once('home.php');
 require_once('about.php');
 require_once('services.php');
@@ -35,9 +17,12 @@ require_once('pricing.php');
 require_once('blog2.php');
 require_once('contact.php');
 require_once('admin2.php'); 
+require_once('admin-home.php'); 
 require_once('admin-about.php'); 
 require_once('admin-services.php'); 
+require_once('admin-portfolio.php'); 
 require_once('admin-pricing.php'); 
+require_once('admin-blog.php'); 
 require_once('admin-contact.php'); 
 
 $app->run();

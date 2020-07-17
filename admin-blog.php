@@ -5,11 +5,11 @@ use \Company\DB\Sql;
 
 
 
-$app->get('/admin/contact', function(){
+$app->get('/admin/blog', function(){
 
     $pageAdmin = new PageAdmin();
     
-    $pageAdmin->setTpl('contact');
+    $pageAdmin->setTpl('blog');
 
     exit;
 });
