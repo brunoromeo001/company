@@ -21,24 +21,24 @@
           <div class="box box-primary">          
             <div class="box box-solid">
               <div class="box-header with-border">
-                <i class="fa fa-text-width"></i>
-  
+                <i class="fa fa-text-width"></i>  
                 <h3 class="box-title">Description Text </h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                 <p>
-                  Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.
-                </p>
-                
+                  <?php $counter1=-1;  if( isset($about_team) && ( is_array($about_team) || $about_team instanceof Traversable ) && sizeof($about_team) ) foreach( $about_team as $key1 => $value1 ){ $counter1++; ?>
+                    <?php echo $value1["text_about"]; ?>
+                  <?php } ?>
+                </p>                
               </div>
               <div class="box-footer">                
-                <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalTextCreate"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit </button>
-                
+                <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalTextCreate"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit </button>                
               </div>              
             </div>
                      
           </div>
+         
         </div>
         <!--/.col (left) -->
         <!-- right column -->
@@ -46,39 +46,57 @@
           <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Team list</h3>
+              <h3 class="box-title">Team list</h3>              
               <button type="submit" class="btn btn-success btn-xs pull-right" data-toggle="modal" data-target="#modalTeamCreate"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Add new team </button>                            
             </div>
             
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
-                <tbody><tr>
-                  <th>ID</th>
-                  <th>Photo</th>
-                  <th>Name</th>
-                  <th>Function</th>
-                  <th>Social midia</th>                  
-                  <th>Action</th>  
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td><img src="/res/assets/img/team/team-1.jpg" alt="User Image" class="img-circle img-sm"></td>
-                  <td>John Doe</td>
-                  <td>Chief Executive Officer</td>
-                  <td>
-                    <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                    <a class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                    <a class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
-                    <a class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                  </td>                  
-                  <td>
-                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                    <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
-                  </td>
-                </tr>
-                
-              </tbody></table>
+                <tbody>
+                  <tr>
+                    <th>ID</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Function</th>
+                    <th>Social midia</th>                  
+                    <th>Action</th>  
+                  </tr>
+                  <tr>
+                  <?php $counter1=-1;  if( isset($teams) && ( is_array($teams) || $teams instanceof Traversable ) && sizeof($teams) ) foreach( $teams as $key1 => $value1 ){ $counter1++; ?>  
+                    <td><?php echo $value1["id_team"]; ?></td>
+                    <td><img src="/res/assets/img/team/team-1.jpg" alt="User Image" class="img-circle img-sm"></td>
+                    <td><?php echo $value1["name_team"]; ?></td>
+                    <td><?php echo $value1["function_team"]; ?></td>
+                    <td>
+                    <?php if( ($value1["facebook_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["facebook_team"]; ?>" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["twitter_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["twitter_team"]; ?>" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["instagram_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["instagram_team"]; ?>" target="_blank" class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["linkedin_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["linkedin_team"]; ?>" target="_blank" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["facebook_team"] && $value1["twitter_team"] && $value1["instagram_team"] && $value1["linkedin_team"])=='' ){ ?>
+                      No social midias
+                    <?php } ?>
+                    </td>                  
+                    <td>
+                      <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                      <a href="/admin/team/<?php echo $value1["id_team"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                    </td>
+                  </tr>
+                <?php } ?>
+                </tbody>
+              </table>
             </div>
           </div>
           <!-- /.box -->
@@ -97,11 +115,14 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="post" action="#">
+              <form method="post" action="/admin/about-team">
                 <div class="box-body">
                   <div class="form-group">
                     <label>Text:</label>
-                    <textarea class="form-control" id="text" namee="text" rows="3"></textarea>
+                    <textarea class="form-control" id="text" name="text_about" rows="3">
+                 
+
+                    </textarea>
                   </div>
                 </div>
                 <!-- /.box-body -->                  
@@ -125,31 +146,68 @@
               </button>
             </div>
             <div class="modal-body">
-              <form method="post" action="#">
+              <form method="post" action="/admin/team" enctype="multipart/form-data">
                 <div class="box-body">
-                  <div class="form-group">
-                    <label>Nome:</label>
-                    <input type="text" class="form-control" id="plan" name="plan" placeholder="Informe o nome do plano">
-                  </div>
-                  <div class="form-group">
-                    <label>Função:</label>
-                    <input type="text" class="form-control" id="pricing" name="pricing" placeholder="Informe o valor">
-                  </div>   
-                  <div class="form-group">
-                    <label>Social midia:</label>
+                  <!-- Minimal style -->             
+                  <!-- checkbox -->
+                  <div class="box-body">
                     <div class="form-group">
-                      <label class="">
-                        <div class="icheckbox_minimal-blue" style="position: relative;" aria-checked="false" aria-disabled="false"><input type="checkbox" class="minimal" checked="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
-                      </label>
-                      <label class="">
-                        <div class="icheckbox_minimal-blue" style="position: relative;" aria-checked="false" aria-disabled="false"><input type="checkbox" class="minimal" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
-                      </label>
-                      <label>
-                        <div class="icheckbox_minimal-blue disabled" style="position: relative;" aria-checked="false" aria-disabled="true"><input type="checkbox" class="minimal" disabled="" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
-                        Minimal skin checkbox
-                      </label>
+                      <label>Nome:</label>
+                      <input type="text" class="form-control" name="name_team" placeholder="Informe o nome ">
                     </div>
-                  </div>   
+                    <div class="form-group">
+                      <label>Função:</label>
+                      <input type="text" class="form-control" name="function_team" placeholder="Informe a função">
+                    </div>   
+                  <div class="form-group">                
+                    <label>
+                      <input type="checkbox" id="check-facebook" data-toggle="collapse" data-target="#collapse-facebook" >
+                      Deseja adcionar o link do Facebook? 
+                    </label>
+                    <div id="collapse-facebook" class="panel-collapse collapse">
+                      <input type="text" class="form-control" id="link_facebook" name="link_facebook" placeholder="Informe o link da página">                
+                    </div>
+                  </div>
+    
+                  <div class="form-group">                
+                    <label>
+                      <input type="checkbox" class="minimals" id="check-twitter" data-toggle="collapse" data-target="#collapse-twitter">
+                      Deseja adcionar o link do Twitter? 
+                    </label>
+                    <div id="collapse-twitter" class="panel-collapse collapse">
+                      <input type="text" class="form-control" id="link_twitter" name="link_twitter" placeholder="Informe o link da página">
+                    </div>
+                  </div>  
+    
+                  <div class="form-group">                
+                    <label>
+                      <input type="checkbox" class="minimal-old" id="check-instagram" data-toggle="collapse" data-target="#collapse-instagram">
+                      Deseja adcionar o link do Instagram? 
+                    </label>
+                    <div id="collapse-instagram" class="panel-collapse collapse">
+                      <input type="text" class="form-control" id="link_instagram" name="link_instagram" placeholder="Informe o link da página">
+                    </div>
+                  </div>  
+                  <div class="form-group">                
+                    <label>
+                      <input type="checkbox" class="minimal-old" id="check-linkedin" data-toggle="collapse" data-target="#collapse-linkedin">
+                      Deseja adcionar o link do Linkedin? 
+                    </label>
+                    <div id="collapse-linkedin" class="panel-collapse collapse">
+                      <input type="text" class="form-control" id="link_linkedin" name="link_linkedin" placeholder="Informe o link da página">
+                    </div>
+                  </div>    
+                  <div class="form-group">
+                    <label for="file">Foto:</label>                    
+                    <input type="file" class="form-control" id="file" name="file">          
+                      <div class="box-body">
+                        <img class="img-responsive" id="image-preview" src="/res/assets/img/team/default.png" alt="Photos">
+                      </div>              
+                  </div>      
+                </div>
+                <!-- /.box-body -->            
+                </div>
+                
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success">Adicionar</button>
@@ -161,3 +219,19 @@
     </section>
     <!-- /.content -->
 </div>
+
+<script>
+  document.querySelector('#file').addEventListener('change', function(){
+    
+    var file = new FileReader();
+  
+    file.onload = function() {
+      
+      document.querySelector('#image-preview').src = file.result;
+  
+    }
+  
+    file.readAsDataURL(this.files[0]);
+  
+  });
+  </script>

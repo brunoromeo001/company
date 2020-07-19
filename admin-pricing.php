@@ -21,7 +21,7 @@ $app->post('/admin/pricing', function(){
 
     $pricing = new Pricing();
 
-    $pricing->setData($_POST);       
+    $pricing->setData($_POST);
     
     $pricing->save();    
 

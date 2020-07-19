@@ -219,8 +219,6 @@
 <script src="/res/admin/bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
 <script src="/res/admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-<!-- iCheck 1.0.1 -->
-<script src="/res/admin/plugins/iCheck/icheck.min.js"></script>
 <!-- jvectormap -->
 <script src="/res/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="/res/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -228,6 +226,10 @@
 <script src="/res/admin/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
 <!-- Select2 -->
 <script src="/res/admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="/res/admin/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="/res/admin/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="/res/admin/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <!-- daterangepicker -->
 <script src="/res/admin/bower_components/moment/min/moment.min.js"></script>
 <script src="/res/admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
@@ -237,6 +239,8 @@
 <script src="/res/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <!-- Slimscroll -->
 <script src="/res/admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="/res/admin/plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="/res/admin/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
@@ -248,7 +252,42 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    $('.select2').select2();
+
+  //Validar campo de midas como obrigatorios  
+  $('input[id="check-facebook"]').change(function() {
+    if ($('input[name="link_facebook"]').attr('required')) {
+      $('input[name="link_facebook"]').removeAttr('required');
+    } 
+    else {
+      $('input[name="link_facebook"]').attr('required','required');
+    }
+  });	
+
+  $('input[id="check-twitter"]').change(function() {
+    if ($('input[name="link_twitter"]').attr('required')) {
+      $('input[name="link_twitter"]').removeAttr('required');
+    } 
+    else {
+      $('input[name="link_twitter"]').attr('required','required');
+    }
+  });	
+  $('input[id="check-instagram"]').change(function() {
+    if ($('input[name="link_instagram"]').attr('required')) {
+      $('input[name="link_instagram"]').removeAttr('required');
+    } 
+    else {
+      $('input[name="link_instagram"]').attr('required','required');
+    }
+  });
+  $('input[id="check-linkedin"]').change(function() {
+    if ($('input[name="link_linkedin"]').attr('required')) {
+      $('input[name="link_linkedin"]').removeAttr('required');
+    } 
+    else {
+      $('input[name="link_linkedin"]').attr('required','required');
+    }
+  });
 
     //Datemask dd/mm/yyyy
     $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
@@ -312,6 +351,8 @@
     })
   
   })
+
+  
 </script>
 </body>
 </html>

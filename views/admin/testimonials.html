@@ -19,7 +19,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Adcionar Contato</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalCreate">Adcionar Depoimento</button>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
@@ -39,22 +39,23 @@
                     <th>ID</th>
                     <th>Foto</th>
                     <th>Nome</th>
-                    <th>Empresa</th>
+                    <th>Profissão</th>
                     <th>Depoimento</th>                    
                     <th>Ação</th>    
                   </tr>
+                  {loop="$testimonials"}
                   <tr>
-                    <td>1</td>
-                    <td><img src="/res/assets/img/testimonials/testimonials-2.jpg" alt="User Image" class="img-circle img-sm"></td>
-                    <td>Renata Gomes</td>
-                    <td>Registrada</td>
-                    <td> Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</td>
+                    <td>{$value.id_testimonials}</td>
+                    <td><img src="/res/assets/img/testimonials/testimonials-1.jpg" alt="User Image" class="img-circle img-sm"></td>
+                    <td>{$value.name_testimonials}</td>
+                    <td>{$value.profession_testimonials}</td>
+                    <td>{$value.testimonials}</td>
                     <td>
                       <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
-                      <a href="#" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/testimonials/{$value.id_testimonials}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  
+                  {/loop}
                 </tbody>
               </table>
             </div>
@@ -69,50 +70,40 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Adicionar Plano</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Adicionar Depoimento</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <form method="post" action="/admin/pricing">
+              <form method="post" action="/admin/testimonials" enctype="multipart/form-data">                                
+                <!-- checkbox -->
                 <div class="box-body">
                   <div class="form-group">
-                    <label>Plano:</label>
-                    <input type="text" class="form-control" id="plan" name="plan" placeholder="Informe o nome do plano">
+                    <label>Nome:</label>
+                    <input type="text" class="form-control" name="name_testimonials" placeholder="Informe o nome ">
                   </div>
                   <div class="form-group">
-                    <label>Valor:</label>
-                    <input type="text" class="form-control" id="pricing" name="pricing" placeholder="Informe o valor">
-                  </div>
+                    <label>Profissão:</label>
+                    <input type="text" class="form-control" name="profession_testimonials" placeholder="Informe a profissão">
+                  </div>   
                   <div class="form-group">
-                    <label>Multiple</label>
-                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State"
-                            style="width: 100%;">
-                      <option>Alabama</option>
-                      <option>Alaska</option>
-                      <option>California</option>
-                      <option>Delaware</option>
-                      <option>Tennessee</option>
-                      <option>Texas</option>
-                      <option>Washington</option>
-                    </select>              
-                  </div>
+                    <label>Depoimento:</label>
+                    <textarea class="form-control" id="testimonials" name="testimonials" rows="3"></textarea>
+                  </div>                   
                   <div class="form-group">
-                    <label>Avançado:</label>
-                    <select class="form-control" name="advanced">
-                      <option value="">Selecione...</option>
-                      <option value="Sim">Sim</option>
-                      <option value="Não">Não</option>
-                    </select>
-                  </div> 
-                                  
+                    <label for="file">Foto:</label>                    
+                    <input type="file" class="form-control" id="file" name="file">          
+                      <div class="box-body">
+                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                      </div>              
+                  </div>      
                 </div>
-                <!-- /.box-body -->                  
+                <!-- /.box-body -->                
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                   <button type="submit" class="btn btn-success">Adicionar</button>
-                </div>
+                </div>             
               </form>
             </div>
           </div>
