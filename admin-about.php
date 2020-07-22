@@ -3,13 +3,22 @@
 use \Company\PageAdmin;
 use \Company\DB\Sql;
 use \Company\Model\About;
+use \Company\Model\AboutUs;
 use \Company\Model\Testimonials;
 
 $app->get('/admin/about-us', function(){
 
     $pageAdmin = new PageAdmin();
+
+    $textSkill = AboutUs::listTextSkill();
+    $skills = AboutUs::listAllSkills();
+    $clients = AboutUs::listAllClients();
     
-    $pageAdmin->setTpl('about-us');
+    $pageAdmin->setTpl('about-us',[
+        'textSkill'=>$textSkill,
+        'skills'=>$skills,
+        'clients'=>$clients
+    ]);
 
     exit;
 });
@@ -23,6 +32,42 @@ $app->post('/admin/about-team', function(){
     $team->saveAboutTeam();   
 
     header("Location: /admin/team");
+    exit;
+});
+
+$app->post('/admin/text-skill', function(){
+
+    $textSkill = new AboutUs();
+
+    $textSkill->setData($_POST);     
+    
+    $textSkill->saveTextSkill();   
+
+    header("Location: /admin/about-us");
+    exit;
+});
+
+$app->post('/admin/skill/create', function(){
+
+    $skill = new AboutUs();
+
+    $skill->setData($_POST);     
+    
+    $skill->saveSkill();   
+
+    header("Location: /admin/about-us");
+    exit;
+});
+
+$app->post('/admin/client/create', function(){
+
+    $client = new AboutUs();
+
+    $client->setData($_POST);     
+    
+    $client->saveClient();   
+
+    header("Location: /admin/about-us");
     exit;
 });
 
@@ -72,6 +117,38 @@ $app->get("/admin/team/{id_team}/delete", function($request, $response){
     $team->deleteTeam();
     
     header("Location: /admin/team");
+    exit;
+});
+
+$app->get("/admin/skills/{id_skill}/delete", function($request, $response){		
+    
+    $id_skill = $request->getAttribute('id_skill');
+    
+    $intId_skill = (int)$id_skill;    
+    
+    $skill = new AboutUs();    
+	
+    $skill->getSkills($intId_skill);  
+
+    $skill->deleteSkills(); 
+
+    header("Location: /admin/about-us");
+    exit;
+});
+
+$app->get("/admin/client/{id_client}/delete", function($request, $response){		
+    
+    $id_client = $request->getAttribute('id_client');
+    
+    $intId_client = (int)$id_client;    
+    
+    $client = new AboutUs();    
+	
+    $client->getClients($intId_client);  
+    
+    $client->deleteClients();         
+
+    header("Location: /admin/about-us");
     exit;
 });
 

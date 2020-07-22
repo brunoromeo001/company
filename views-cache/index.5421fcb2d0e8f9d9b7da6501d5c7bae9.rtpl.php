@@ -52,7 +52,7 @@
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
     </div>
-  </section><!-- End Hero -->
+  </section><!-- End Hero --> 
 
   <main id="main">
 
@@ -61,7 +61,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>About Us</strong></h2>
+          <h2>Sobre nós</strong></h2>
         </div>
 
         <div class="row content">
@@ -95,7 +95,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Services</strong></h2>
+          <h2>Serviços</strong></h2>
           <p>Laborum repudiandae omnis voluptatum consequatur mollitia ea est voluptas ut</p>
         </div>
 
@@ -304,7 +304,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Clients</h2>
+          <h2>Clientes</h2>
         </div>
 
         <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">

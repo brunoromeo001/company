@@ -18,11 +18,9 @@
     <!-- ======= Pricing Section ======= -->
     <section id="pricing" class="pricing">
       <div class="container" data-aos="fade-up">
-
         <div class="row">
-
           <?php $counter1=-1;  if( isset($plans) && ( is_array($plans) || $plans instanceof Traversable ) && sizeof($plans) ) foreach( $plans as $key1 => $value1 ){ $counter1++; ?>
-          <div class="col-lg-3 col-md-6 mt-4 mt-lg-0">
+          <div class="col-lg-3 col-md-6 mt-4 mt-lg-4">
             <?php if( $value1["active"] =='1' ){ ?>
             <div class="box featured">
             <?php }else{ ?>
