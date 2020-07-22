@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 19-Jul-2020 às 19:36
+-- Generation Time: 22-Jul-2020 às 23:42
 -- Versão do servidor: 8.0.20
 -- versão do PHP: 7.3.5
 
@@ -50,6 +50,31 @@ BEGIN
     SELECT * FROM tb_about_team WHERE id_about_team = pid_about_team;
 END$$
 
+DROP PROCEDURE IF EXISTS `sp_client_save`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_client_save` (IN `pid_client` INT, IN `pname_client` VARCHAR(255), IN `psite_client` VARCHAR(255))  NO SQL
+BEGIN
+	
+	IF pid_client > 0 THEN
+		
+		UPDATE tb_clients
+      SET 
+        name_client = pname_client,
+        site_client = psite_client               
+      WHERE id_client = pid_client;
+        
+  ELSE
+
+		INSERT INTO tb_clients (name_client, site_client) 
+    VALUES(pname_client, psite_client);
+      
+      SET pid_client = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_clients WHERE id_client = pid_client;
+    
+END$$
+
 DROP PROCEDURE IF EXISTS `sp_pricing_save`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_pricing_save` (IN `pid_pricing` INT(11), IN `pplan` VARCHAR(100), IN `ppricing` DECIMAL(10,2), IN `pdeteils` TEXT, IN `padvanced` ENUM('Sim','Não'))  BEGIN
 	
@@ -73,6 +98,28 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_pricing_save` (IN `pid_pricing` 
     END IF;
     
     SELECT * FROM tb_pricing WHERE id_pricing = pid_pricing;
+    
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_skill_save`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_skill_save` (IN `pid_skill` INT(11), IN `pname_skill` VARCHAR(100), IN `pvalue_skill` INT(3))  NO SQL
+BEGIN
+	
+	IF pid_skill > 0 THEN
+		
+		UPDATE tb_skills
+      SET 
+        name_skill = pname_skill,
+        value_skill = pvalue_skill        
+      WHERE id_skill = pid_skill;
+
+  ELSE
+
+		INSERT INTO tb_skills (name_skill, value_skill)
+        VALUES(pname_skill, pvalue_skill);
+        SET pid_skill= LAST_INSERT_ID();
+     END IF;
+        SELECT * FROM tb_skills WHERE id_skill = pid_skill;
     
 END$$
 
@@ -128,6 +175,31 @@ BEGIN
     END IF;
     
     SELECT * FROM tb_testimonials WHERE id_testimonials = pid_testimonials;
+    
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_text_skill_save`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_text_skill_save` (IN `pid_text_skill` INT(3), IN `ptext_skill` TEXT)  NO SQL
+BEGIN
+	
+	IF pid_text_skill > 0 THEN
+		
+		UPDATE tb_text_skill
+      SET 
+        text_skill = ptext_skill
+             
+      WHERE id_text_skill = pid_text_skill;
+        
+  ELSE
+
+		INSERT INTO tb_text_skill (text_skill)
+      VALUES(ptext_skill);
+      
+      SET pid_text_skill = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_text_skill WHERE id_text_skill = pid_text_skill;
     
 END$$
 
@@ -189,7 +261,14 @@ CREATE TABLE IF NOT EXISTS `tb_clients` (
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_client`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `tb_clients`
+--
+
+INSERT INTO `tb_clients` (`id_client`, `name_client`, `site_client`, `dt_update`) VALUES
+(3, 'Record', 'www.r7.com.br', NULL);
 
 -- --------------------------------------------------------
 
@@ -254,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `tb_pricing` (
   `dt_create` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_pricing`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `tb_pricing`
@@ -264,7 +343,8 @@ INSERT INTO `tb_pricing` (`id_pricing`, `plan`, `pricing`, `deteils`, `advanced`
 (1, 'Business', '19.00', 'Aida dere\r\n    Nec feugiat nisl\r\n    Nulla at volutpat dola\r\n    Pharetra massa\r\n    Massa ultricies mi\r\n', 'Não', 1),
 (2, 'Developer', '29.00', '\r\n    Aida dere\r\n    Nec feugiat nisl\r\n    Nulla at volutpat dola\r\n    Pharetra massa\r\n    Massa ultricies mi\r\n', 'Não', 0),
 (3, 'Ultimate', '49.00', '\r\n    Aida dere\r\n    Nec feugiat nisl\r\n    Nulla at volutpat dola\r\n    Pharetra massa\r\n    Massa ultricies mi\r\n', 'Sim', 0),
-(9, 'noventa', '12.00', NULL, 'Sim', 0);
+(9, 'noventa', '12.00', NULL, 'Sim', 0),
+(12, 'Viny buniissd', '200.00', NULL, 'Não', 0);
 
 -- --------------------------------------------------------
 
@@ -291,13 +371,20 @@ CREATE TABLE IF NOT EXISTS `tb_services` (
 
 DROP TABLE IF EXISTS `tb_skills`;
 CREATE TABLE IF NOT EXISTS `tb_skills` (
-  `id_skills` int NOT NULL AUTO_INCREMENT,
-  `name_skills` varchar(100) NOT NULL,
-  `value_skills` int NOT NULL,
+  `id_skill` int NOT NULL AUTO_INCREMENT,
+  `name_skill` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `value_skill` int NOT NULL,
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_skills`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_skill`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `tb_skills`
+--
+
+INSERT INTO `tb_skills` (`id_skill`, `name_skill`, `value_skill`, `dt_update`) VALUES
+(4, 'PHP7', 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -316,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `tb_team` (
   `linkedin_team` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_team`)
-) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `tb_team`
@@ -342,7 +429,9 @@ INSERT INTO `tb_team` (`id_team`, `name_team`, `function_team`, `facebook_team`,
 (20, '', '', '', '', '', ''),
 (21, '', '', '', '', '', ''),
 (22, '', '', '', '', '', ''),
-(23, '', '', '', '', '', '');
+(23, '', '', '', '', '', ''),
+(26, '', '', '', '', '', ''),
+(27, 'a', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -360,6 +449,28 @@ CREATE TABLE IF NOT EXISTS `tb_testimonials` (
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_testimonials`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_text_skill`
+--
+
+DROP TABLE IF EXISTS `tb_text_skill`;
+CREATE TABLE IF NOT EXISTS `tb_text_skill` (
+  `id_text_skill` int NOT NULL AUTO_INCREMENT,
+  `text_skill` text NOT NULL,
+  `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_text_skill`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `tb_text_skill`
+--
+
+INSERT INTO `tb_text_skill` (`id_text_skill`, `text_skill`, `dt_update`) VALUES
+(1, '                 \r\n\r\n                Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', '2020-07-22 19:51:56');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
