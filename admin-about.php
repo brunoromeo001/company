@@ -23,6 +23,20 @@ $app->get('/admin/about-us', function(){
     exit;
 });
 
+$app->post('/admin/skill-update', function($id_skill){       
+
+    $skill = new AboutUs();
+
+    $skill->setData($_POST);     
+    
+    $skill->saveSkill();   
+
+    header("Location: /admin/about-us");
+    exit;
+   
+});
+
+
 $app->post('/admin/about-team', function(){
 
     $team = new About();
@@ -34,6 +48,8 @@ $app->post('/admin/about-team', function(){
     header("Location: /admin/team");
     exit;
 });
+
+
 
 $app->post('/admin/text-skill', function(){
 
@@ -70,6 +86,20 @@ $app->post('/admin/client/create', function(){
     header("Location: /admin/about-us");
     exit;
 });
+
+$app->post('/admin/client-update', function($id_skill){       
+
+    $client = new AboutUs();
+
+    $client->setData($_POST);     
+    
+    $client->saveClient();   
+
+    header("Location: /admin/about-us");
+    exit;
+   
+});
+
 
 $app->get('/admin/team', function(){
 

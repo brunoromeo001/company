@@ -1,4 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -84,9 +84,9 @@
             </div>
             <div class="box-body">
               <p>
-                {loop="$textSkill"} 
-                  {$value.text_skill}
-                {/loop}
+                <?php $counter1=-1;  if( isset($textSkill) && ( is_array($textSkill) || $textSkill instanceof Traversable ) && sizeof($textSkill) ) foreach( $textSkill as $key1 => $value1 ){ $counter1++; ?> 
+                  <?php echo $value1["text_skill"]; ?>
+                <?php } ?>
               </p>
             </div>
             <!-- /.box-body -->
@@ -120,21 +120,21 @@
                     <th>Habilidade</th>
                     <th>Porcentagem</th>                     
                   </tr>
-                  {loop="$skills"}
+                  <?php $counter1=-1;  if( isset($skills) && ( is_array($skills) || $skills instanceof Traversable ) && sizeof($skills) ) foreach( $skills as $key1 => $value1 ){ $counter1++; ?>
                   <tr>                  
-                    <td>{$value.id_skill}</td>         
-                    <td>{$value.name_skill}</td>                    
-                    <td>{$value.value_skill}%</td>                    
+                    <td><?php echo $value1["id_skill"]; ?></td>         
+                    <td><?php echo $value1["name_skill"]; ?></td>                    
+                    <td><?php echo $value1["value_skill"]; ?>%</td>                    
                     <td>
-                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalSkillUpdade" data-id_skill="{$value.id_skill}" data-name_skill="{$value.name_skill}" data-value_skill="{$value.value_skill}">
+                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalSkillUpdade" data-id_skill="<?php echo $value1["id_skill"]; ?>" data-name_skill="<?php echo $value1["name_skill"]; ?>" data-value_skill="<?php echo $value1["value_skill"]; ?>">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Editar 
                       </button> 
                                        
-                      <a href="/admin/skills/{$value.id_skill}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/skills/<?php echo $value1["id_skill"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  {/loop}
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -171,20 +171,20 @@
                     <th>Foto</th>
                     <th>Cliente</th>                     
                   </tr>
-                  {loop="$clients"}
+                  <?php $counter1=-1;  if( isset($clients) && ( is_array($clients) || $clients instanceof Traversable ) && sizeof($clients) ) foreach( $clients as $key1 => $value1 ){ $counter1++; ?>
                   <tr>                  
-                    <td>{$value.id_client}</td>         
+                    <td><?php echo $value1["id_client"]; ?></td>         
                     <td><img src="/res/assets/img/clients/client-1.png" alt="User Image" class="img-circle img-sm"></td>             
-                    <td>{$value.name_client}</td>                    
+                    <td><?php echo $value1["name_client"]; ?></td>                    
                     <td>
-                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalClientUpdate" data-id_client="{$value.id_client}" data-name_client="{$value.name_client}" data-site_client="{$value.site_client}">
+                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalClientUpdate" data-id_client="<?php echo $value1["id_client"]; ?>" data-name_client="<?php echo $value1["name_client"]; ?>" data-site_client="<?php echo $value1["site_client"]; ?>">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Editar 
                       </button> 
-                      <a href="/admin/client/{$value.id_client}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/client/<?php echo $value1["id_client"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr> 
-                  {/loop}               
+                  <?php } ?>               
                 </tbody>
               </table>
             </div>

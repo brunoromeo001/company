@@ -7,7 +7,7 @@ use \Company\Model;
 
 class AboutUs extends Model{
 
-  public function get($id_text_skill)
+	public function get($id_text_skill)
 	{
 		
 		$sql = new Sql();
@@ -26,9 +26,11 @@ class AboutUs extends Model{
 		
 		$results = $sql->select("SELECT * FROM tb_skills WHERE id_skill = :id_skill", [
 			':id_skill'=>$id_skill
-		]);
-		
-		$this->setData($results[0]);
+		]);				
+
+		$this->setData($results[0]);	
+
+		return $results;
 	}	
 
 	public function getClients($id_client)
@@ -43,31 +45,31 @@ class AboutUs extends Model{
 		$this->setData($results[0]);
 	}	
 
-  public static function listTextSkill()
-  {
+  	public static function listTextSkill()
+  	{
 
-    $sql = new Sql();
+		$sql = new Sql();
 
-    return $sql->select("SELECT * FROM tb_text_skill");    
+		return $sql->select("SELECT * FROM tb_text_skill");    
 
-	}
-	
+		}
+		
 	public static function listAllSkills()
-  {
+	{
 
-    $sql = new Sql();
+		$sql = new Sql();
 
-    return $sql->select("SELECT * FROM tb_skills");    
+		return $sql->select("SELECT * FROM tb_skills");    
 
 	}	
 
 		
 	public static function listAllClients()
-  {
+ 	{
 
-    $sql = new Sql();
+		$sql = new Sql();
 
-    return $sql->select("SELECT * FROM tb_clients");    
+		return $sql->select("SELECT * FROM tb_clients");    
 
 	}	
 	
@@ -82,17 +84,17 @@ class AboutUs extends Model{
 		));
 		
 		$this->setData($results[0]);			
-  } 
+  	} 
 
-  public function saveSkill()
+  	public function saveSkill()
 	{
 		
 		$sql = new Sql();
 	
 		$results = $sql->select("CALL sp_skill_save(:id_skill, :name_skill, :value_skill)", array(
 			":id_skill"=>$this->getid_skill(),
-      ":name_skill"=>$this->getname_skill(),
-      ":value_skill"=>$this->getvalue_skill()
+			":name_skill"=>$this->getname_skill(),
+			":value_skill"=>$this->getvalue_skill()
 		));
 		
 		$this->setData($results[0]);			
@@ -105,21 +107,21 @@ class AboutUs extends Model{
 	
 		$results = $sql->select("CALL sp_client_save(:id_client, :name_client, :site_client)", array(
 			":id_client"=>$this->getid_client(),
-      ":name_client"=>$this->getname_client(),
-      ":site_client"=>$this->getsite_client()
+			":name_client"=>$this->getname_client(),
+			":site_client"=>$this->getsite_client()
 		));
 		
 		$this->setData($results[0]);			
 	} 	
   
-  public function deleteSkills()
+  	public function deleteSkills()
 	{		
 		$sql = new Sql();
 		
 		$sql->query("DELETE FROM tb_skills WHERE id_skill = :id_skill", [
 			':id_skill'=>$this->getid_skill()
 		]);
-	}
+	}	
 
 	public function deleteClients()
 	{		
