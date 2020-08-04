@@ -133,6 +133,20 @@ $app->post('/admin/team', function(){
     exit;
 });
 
+$app->post('/admin/team-update', function($id_team){       
+
+    $team = new About();
+
+    $team->setData($_POST);     
+    
+    $team->saveTeam();   
+
+    header("Location: /admin/team");
+    exit;
+   
+});
+
+
 
 $app->get("/admin/team/{id_team}/delete", function($request, $response){		
     

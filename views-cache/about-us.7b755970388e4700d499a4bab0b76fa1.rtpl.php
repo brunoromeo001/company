@@ -91,7 +91,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
-              <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalEditSkill">
+              <button type="submit" class="btn btn-info pull-right" data-toggle="modal" data-target="#modalEditTextSkill">
                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 Editar
               </button>
@@ -197,189 +197,187 @@
         </div>
       </div>
       <!-- /.box -->
+      
+      <!-- MODAL Edit Text nossa habiliadades -->
+      <div class="modal fade" id="modalEditTextSkill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Editar texto nossas habilidades</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/text-skill">                                  
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Texto:</label>
+                    <textarea class="form-control" id="text_skill" name="text_skill" rows="3">                 
 
+                    </textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Adicionar</button>
+                </div>             
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalSkillCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Adcionar nova habilidade</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/skill/create">                                  
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Nome da habilidade:</label>
+                    <input type="text" class="form-control" name="name_skill" placeholder="Informe o nome da habilidade">
+                  </div>
+                  <div class="form-group">
+                    <label>Nível em porcentagem:</label>
+                    <input type="text" class="form-control" name="value_skill" placeholder="Informe o nível">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Adicionar</button>
+                </div>             
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalSkillUpdade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Editar habilidade</h4>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/skill-update">                                  
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Nome da habilidades:</label>
+                    <input type="text" class="form-control" name="name_skill" id="name_skill" placeholder="Informe o nome da habilidade">
+                  </div>
+                  <div class="form-group">
+                    <label>Nível em porcentagem:</label>
+                    <input type="text" class="form-control" name="value_skill" id="value_skill" placeholder="Informe o nível">
+                  </div>              
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Atualizar</button>
+                </div>             
+                <input type="hidden" class="form-control" name="id_skill" id="id_skill" >
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL nossos clientes -->
+      <div class="modal fade" id="modalClientCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Adcionar novo cliente </h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/client/create" enctype="multipart/form-data">                                  
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Nome do cliente:</label>
+                    <input type="text" class="form-control" name="name_client" placeholder="Informe o nome da habilidade">
+                  </div>
+                  <div class="form-group">
+                    <label>Site:</label>
+                    <input type="text" class="form-control" name="site_client" placeholder="Informe o nível">
+                  </div>
+                  <div class="form-group">
+                    <label for="file">Logo:</label>                    
+                    <input type="file" class="form-control" id="file" name="file">          
+                      <div class="box-body">
+                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                      </div>              
+                  </div> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Adicionar</button>
+                </div>             
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modalClientUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="exampleModalLabel">Editar cliente </h4>
+            </div>
+            <div class="modal-body">
+              <form method="post" action="/admin/client/create" enctype="multipart/form-data">                                  
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Nome do cliente:</label>
+                    <input type="text" class="form-control" name="name_client" id="name_client" placeholder="Informe o nome do cliente">
+                  </div>
+                  <div class="form-group">
+                    <label>Site:</label>
+                    <input type="text" class="form-control" name="site_client" id="site_client" placeholder="Informe o site">
+                  </div>
+                  <div class="form-group">
+                    <label for="file">Logo:</label>                    
+                    <input type="file" class="form-control" id="file" name="file">          
+                      <div class="box-body">
+                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                      </div>              
+                  </div> 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Atualizar</button>
+                </div>   
+                <input type="hidden" name="id_client" id="id_client" placeholder="Informe o nome do cliente">          
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 
-<!-- MODAL Edit Text nossa habiliadades -->
-  <div class="modal fade" id="modalEditSkill" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">Editar texto nossas habilidades</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="/admin/text-skill">                                  
-            <div class="box-body">
-              <div class="form-group">
-                <label>Texto:</label>
-                <textarea class="form-control" id="text_skill" name="text_skill" rows="3">                 
-
-                </textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Adicionar</button>
-            </div>             
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="modal fade" id="modalSkillCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">Adcionar nova habilidade</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="/admin/skill/create">                                  
-            <div class="box-body">
-              <div class="form-group">
-                <label>Nome da habilidade:</label>
-                <input type="text" class="form-control" name="name_skill" placeholder="Informe o nome da habilidade">
-              </div>
-              <div class="form-group">
-                <label>Nível em porcentagem:</label>
-                <input type="text" class="form-control" name="value_skill" placeholder="Informe o nível">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Adicionar</button>
-            </div>             
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalSkillUpdade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="exampleModalLabel">Editar habilidade</h4>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="/admin/skill-update">                                  
-            <div class="box-body">
-              <div class="form-group">
-                <label>Nome da habilidades:</label>
-                <input type="text" class="form-control" name="name_skill" id="name_skill" placeholder="Informe o nome da habilidade">
-              </div>
-              <div class="form-group">
-                <label>Nível em porcentagem:</label>
-                <input type="text" class="form-control" name="value_skill" id="value_skill" placeholder="Informe o nível">
-              </div>              
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Atualizar</button>
-            </div>             
-            <input type="hidden" class="form-control" name="id_skill" id="id_skill" >
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL nossos clientes -->
-  <div class="modal fade" id="modalClientCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel">Adcionar novo cliente </h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="/admin/client/create" enctype="multipart/form-data">                                  
-            <div class="box-body">
-              <div class="form-group">
-                <label>Nome do cliente:</label>
-                <input type="text" class="form-control" name="name_client" placeholder="Informe o nome da habilidade">
-              </div>
-              <div class="form-group">
-                <label>Site:</label>
-                <input type="text" class="form-control" name="site_client" placeholder="Informe o nível">
-              </div>
-              <div class="form-group">
-                <label for="file">Logo:</label>                    
-                <input type="file" class="form-control" id="file" name="file">          
-                  <div class="box-body">
-                    <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
-                  </div>              
-              </div> 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Adicionar</button>
-            </div>             
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal fade" id="modalClientUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h4 class="modal-title" id="exampleModalLabel">Editar cliente </h4>
-        </div>
-        <div class="modal-body">
-          <form method="post" action="/admin/client/create" enctype="multipart/form-data">                                  
-            <div class="box-body">
-              <div class="form-group">
-                <label>Nome do cliente:</label>
-                <input type="text" class="form-control" name="name_client" id="name_client" placeholder="Informe o nome do cliente">
-              </div>
-              <div class="form-group">
-                <label>Site:</label>
-                <input type="text" class="form-control" name="site_client" id="site_client" placeholder="Informe o site">
-              </div>
-              <div class="form-group">
-                <label for="file">Logo:</label>                    
-                <input type="file" class="form-control" id="file" name="file">          
-                  <div class="box-body">
-                    <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
-                  </div>              
-              </div> 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-success">Atualizar</button>
-            </div>   
-            <input type="hidden" name="id_client" id="id_client" placeholder="Informe o nome do cliente">          
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<script src="/res/admin/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/res/admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
 <script>
 
-  // Função para prencher os campos do modalClientUpdate 
+  scripts.push(function(){
+
+    // Função para prencher os campos do modalClientUpdate 
    $('#modalClientUpdate').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
     var idClient = button.data('id_client');// Extract info from data-* attributes
@@ -410,17 +408,20 @@
 		  
 	});
   
-  document.querySelector('#file').addEventListener('change', function(){
+    document.querySelector('#file').addEventListener('change', function(){
 
-    var file = new FileReader();
+      var file = new FileReader();
 
-    file.onload = function() {
-      
-      document.querySelector('#image-preview').src = file.result;
+      file.onload = function() {
+        
+        document.querySelector('#image-preview').src = file.result;
 
-    }
+      }
 
-    file.readAsDataURL(this.files[0]);
+      file.readAsDataURL(this.files[0]);
 
-  });    
+    });    
+  });
+
+  
 </script>

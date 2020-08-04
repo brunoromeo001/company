@@ -90,7 +90,10 @@
                     {/if}
                     </td>                  
                     <td>
-                      <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
+                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalTeamUpdate" data-id_team="{$value.id_team}" data-name_team="{$value.name_team}" data-function_team="{$value.function_team}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        Editar 
+                      </button> 
                       <a href="/admin/team/{$value.id_team}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
@@ -135,18 +138,20 @@
           </div>
         </div>
       </div>
-
+<!-- 
+      * Modal 
+      ? Team Create
+-->
       <div class="modal fade" id="modalTeamCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Team Create </h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                <span aria-hidden="true">&times;</span>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"> <span aria-hidden="true">&times;</span>
               </button>
+              <h4 class="modal-title" id="exampleModalLabel">Nova equipe </h4>
             </div>
             <div class="modal-body">
-              <form method="post" action="/admin/team" enctype="multipart/form-data">
+              <form method="post" action="/admin/team-update" enctype="multipart/form-data">
                 <div class="box-body">
                   <!-- Minimal style -->             
                   <!-- checkbox -->
@@ -208,31 +213,154 @@
                 <!-- /.box-body -->            
                 </div>
                 
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-success">Adicionar</button>
-                  </div>             
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Adicionar</button>
+                </div>             
               </form>
           </div>
         </div>
       </div>
+      </div>
+
+      <!-- 
+      * Modal 
+      ? Team Update
+    -->
+    <div class="modal fade" id="modalTeamUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">            
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="exampleModalLabel">Editar equipe </h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="/admin/team-update" enctype="multipart/form-data">
+              <div class="box-body">
+                <!-- Minimal style -->             
+                <!-- checkbox -->
+                <div class="box-body">
+                  <div class="form-group">
+                    <label>Nome:</label>
+                    <input type="text" class="form-control" name="name_team" id="name_team" placeholder="Informe o nome ">
+                  </div>
+                  <div class="form-group">
+                    <label>Função:</label>
+                    <input type="text" class="form-control" name="function_team" id="function_team" placeholder="Informe a função">
+                  </div>   
+                <div class="form-group">                
+                  <label>
+                    <input type="checkbox" id="check-facebook" data-toggle="collapse" data-target="#collapse-facebook" >
+                    Deseja adcionar o link do Facebook? 
+                  </label>
+                  <div id="collapse-facebook" class="panel-collapse collapse">
+                    <input type="text" class="form-control" id="link_facebook" name="link_facebook" placeholder="Informe o link da página">                
+                  </div>
+                </div>
+  
+                <div class="form-group">                
+                  <label>
+                    <input type="checkbox" class="minimals" id="check-twitter" data-toggle="collapse" data-target="#collapse-twitter">
+                    Deseja adcionar o link do Twitter? 
+                  </label>
+                  <div id="collapse-twitter" class="panel-collapse collapse">
+                    <input type="text" class="form-control" id="link_twitter" name="link_twitter" placeholder="Informe o link da página">
+                  </div>
+                </div>  
+  
+                <div class="form-group">                
+                  <label>
+                    <input type="checkbox" class="minimal-old" id="check-instagram" data-toggle="collapse" data-target="#collapse-instagram">
+                    Deseja adcionar o link do Instagram? 
+                  </label>
+                  <div id="collapse-instagram" class="panel-collapse collapse">
+                    <input type="text" class="form-control" id="link_instagram" name="link_instagram" placeholder="Informe o link da página">
+                  </div>
+                </div>  
+                <div class="form-group">                
+                  <label>
+                    <input type="checkbox" class="minimal-old" id="check-linkedin" data-toggle="collapse" data-target="#collapse-linkedin">
+                    Deseja adcionar o link do Linkedin? 
+                  </label>
+                  <div id="collapse-linkedin" class="panel-collapse collapse">
+                    <input type="text" class="form-control" id="link_linkedin" name="link_linkedin" placeholder="Informe o link da página">
+                  </div>
+                </div>    
+                <div class="form-group">
+                  <label for="file">Foto:</label>                    
+                  <input type="file" class="form-control" id="file" name="file">          
+                    <div class="box-body">
+                      <img class="img-responsive" id="image-preview" src="/res/assets/img/team/default.png" alt="Photos">
+                    </div>              
+                </div>      
+              </div>
+              <!-- /.box-body -->            
+              </div>              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-success">Atualizar</button>
+              </div>  
+              <input type="hidden"  id="id_team" name="id_team" >
+            </form>
+        </div>
+      </div>
+    </div>
       </div>
     </section>
     <!-- /.content -->
 </div>
 
 <script>
-  document.querySelector('#file').addEventListener('change', function(){
+
+  scripts.push(function(){
+
+    // Função para prencher os campos do modalTeamUpdate 
+   $('#modalTeamUpdate').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var idTeam = button.data('id_team');// Extract info from data-* attributes
+    var nameTeam = button.data('name_team');
+    var functionTeam = button.data('function_team');
     
-    var file = new FileReader();
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    modal.find('#id_team').val(idTeam);
+    modal.find('#name_team').val(nameTeam);
+    modal.find('#function_team').val(functionTeam);
+		  
+	});
+
+  // Função para prencher os campos do modalSkillUpdade  
+  $('#modalSkillUpdade').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var idSkill = button.data('id_skill');// Extract info from data-* attributes
+    var nameSkill = button.data('name_skill');
+    var valueSkill = button.data('value_skill');
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    modal.find('#id_skill').val(idSkill);
+    modal.find('#name_skill').val(nameSkill);
+    modal.find('#value_skill').val(valueSkill);
+		  
+	});
   
-    file.onload = function() {
-      
-      document.querySelector('#image-preview').src = file.result;
-  
-    }
-  
-    file.readAsDataURL(this.files[0]);
-  
+    document.querySelector('#file').addEventListener('change', function(){
+
+      var file = new FileReader();
+
+      file.onload = function() {
+        
+        document.querySelector('#image-preview').src = file.result;
+
+      }
+
+      file.readAsDataURL(this.files[0]);
+
+    });    
   });
-  </script>
+
+  
+</script>
