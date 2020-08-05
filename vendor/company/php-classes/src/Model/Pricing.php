@@ -26,7 +26,16 @@ class Pricing extends Model{
 
     return $sql->select("SELECT * FROM tb_pricing ORDER BY pricing ");    
 
-  }
+	}	
+    
+	public static function askedListAll()
+	{
+
+		$sql = new Sql();
+
+    return $sql->select("SELECT * FROM tb_askeds ");    
+
+	}
 
   public function save()
 	{
@@ -52,6 +61,20 @@ class Pricing extends Model{
 			':id_pricing'=>$this->getid_pricing()
 		]);
 	}
+
+	public function saveAsked()
+	{
+		
+		$sql = new Sql();
+	
+		$results = $sql->select("CALL sp_asked_save(:id_asked, :asked, :answer)", array(
+			":id_asked"=>$this->getid_asked(),
+      ":asked"=>$this->getasked(),
+      ":answer"=>$this->getanswer()
+		));
+		
+		$this->setData($results[0]);			
+  } 
 
 }
 
