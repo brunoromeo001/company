@@ -1,4 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -44,19 +44,19 @@
                     <th>Avançado</th> 
                     <th>Ação</th> 
                   </tr>
-                  {loop="$pricings"} 
+                  <?php $counter1=-1;  if( isset($pricings) && ( is_array($pricings) || $pricings instanceof Traversable ) && sizeof($pricings) ) foreach( $pricings as $key1 => $value1 ){ $counter1++; ?> 
                   <tr>
-                    <td>{$value.id_pricing}</td>
-                    <td>{$value.plan}</td>
-                    <td>R$ {$value.pricing} / Mês</td>
-                    <td>{$value.deteils} </td>
-                    <td>{$value.advanced}</td>
+                    <td><?php echo $value1["id_pricing"]; ?></td>
+                    <td><?php echo $value1["plan"]; ?></td>
+                    <td>R$ <?php echo $value1["pricing"]; ?> / Mês</td>
+                    <td><?php echo $value1["deteils"]; ?> </td>
+                    <td><?php echo $value1["advanced"]; ?></td>
                     <td>
                       <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalPricingUpdate"><i class="fa fa-edit"></i> Editar</button>
-                      <a href="/admin/pricing/{$value.id_pricing}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/pricing/<?php echo $value1["id_pricing"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  {/loop}
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -90,17 +90,17 @@
                     <th>Resposta</th>                    
                     <th>Ação</th> 
                   </tr>
-                  {loop="$askeds"} 
+                  <?php $counter1=-1;  if( isset($askeds) && ( is_array($askeds) || $askeds instanceof Traversable ) && sizeof($askeds) ) foreach( $askeds as $key1 => $value1 ){ $counter1++; ?> 
                   <tr>
-                    <td>{$value.id_asked}</td>
-                    <td>{$value.asked}</td>                                      
-                    <td>{$value.answer}</td>
+                    <td><?php echo $value1["id_asked"]; ?></td>
+                    <td><?php echo $value1["asked"]; ?></td>                                      
+                    <td><?php echo $value1["answer"]; ?></td>
                     <td>
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalAskedUpdate" data-id_asked="{$value.id_asked}" data-asked="{$value.asked}" data-answer="{$value.answer}"><i class="fa fa-edit"></i> Editar</button>
-                      <a href="/admin/asked/{$value.id_asked}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalAskedUpdate" data-id_asked="<?php echo $value1["id_asked"]; ?>" data-asked="<?php echo $value1["asked"]; ?>" data-answer="<?php echo $value1["answer"]; ?>"><i class="fa fa-edit"></i> Editar</button>
+                      <a href="/admin/asked/<?php echo $value1["id_asked"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  {/loop}
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

@@ -217,7 +217,19 @@ $app->post('/admin/testimonials', function(){
 
     $testimonials->setData($_POST);  
    
-    $testimonials->saveTestimonials();  
+    $testimonials->save();  
+
+    header("Location: /admin/testimonials");
+    exit;
+});
+
+$app->post('/admin/testimonials-update', function($id_testimonials){
+
+    $testimonials = new Testimonials();
+
+    $testimonials->setData($_POST);        
+  
+    $testimonials->save();    
 
     header("Location: /admin/testimonials");
     exit;
@@ -233,7 +245,7 @@ $app->get("/admin/testimonials/{id_testimonials}/delete", function($request, $re
 	
     $testimonials->get($intId_testimonials);  
     
-    $testimonials->deleteTestimonials();   
+    $testimonials->delete();   
     
     header("Location: /admin/testimonials");
     exit;

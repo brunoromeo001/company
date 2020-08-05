@@ -1,4 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -34,19 +34,19 @@
                     <th>Depoimento</th>                    
                     <th>Ação</th>    
                   </tr>
-                  {loop="$testimonials"}
+                  <?php $counter1=-1;  if( isset($testimonials) && ( is_array($testimonials) || $testimonials instanceof Traversable ) && sizeof($testimonials) ) foreach( $testimonials as $key1 => $value1 ){ $counter1++; ?>
                   <tr>
-                    <td>{$value.id_testimonials}</td>
+                    <td><?php echo $value1["id_testimonials"]; ?></td>
                     <td><img src="/res/assets/img/testimonials/testimonials-1.jpg" alt="User Image" class="img-circle img-sm"></td>
-                    <td>{$value.name_testimonials}</td>
-                    <td>{$value.profession_testimonials}</td>
-                    <td>{$value.testimonials}</td>
+                    <td><?php echo $value1["name_testimonials"]; ?></td>
+                    <td><?php echo $value1["profession_testimonials"]; ?></td>
+                    <td><?php echo $value1["testimonials"]; ?></td>
                     <td>
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalTestimonialUpdate" data-id_testimonials="{$value.id_testimonials}" data-name_testimonials="{$value.name_testimonials}" data-profession_testimonials="{$value.profession_testimonials}" data-testimonials="{$value.testimonials}"><i class="fa fa-edit"></i> Editar</button>                      
-                      <a href="/admin/testimonials/{$value.id_testimonials}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalTestimonialUpdate" data-id_testimonials="<?php echo $value1["id_testimonials"]; ?>" data-name_testimonials="<?php echo $value1["name_testimonials"]; ?>" data-profession_testimonials="<?php echo $value1["profession_testimonials"]; ?>" data-testimonials="<?php echo $value1["testimonials"]; ?>"><i class="fa fa-edit"></i> Editar</button>                      
+                      <a href="/admin/testimonials/<?php echo $value1["id_testimonials"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                  {/loop}
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

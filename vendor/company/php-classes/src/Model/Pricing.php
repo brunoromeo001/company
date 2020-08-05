@@ -7,7 +7,7 @@ use \Company\Model;
 
 class Pricing extends Model{
 
-  public function get($id_pricing)
+	public function get($id_pricing)
 	{
 		
 		$sql = new Sql();
@@ -17,14 +17,14 @@ class Pricing extends Model{
 		]);
 		
 		$this->setData($results[0]);
-	}	
+	}
 
-  public static function listAll()
-  {
+	public static function listAll()
+	{
 
-    $sql = new Sql();
+		$sql = new Sql();
 
-    return $sql->select("SELECT * FROM tb_pricing ORDER BY pricing ");    
+		return $sql->select("SELECT * FROM tb_pricing ORDER BY pricing ");    
 
 	}	
     
@@ -33,27 +33,27 @@ class Pricing extends Model{
 
 		$sql = new Sql();
 
-    return $sql->select("SELECT * FROM tb_askeds ");    
+   		return $sql->select("SELECT * FROM tb_askeds ");    
 
 	}
 
-  public function save()
+ 	public function save()
 	{
 		
 		$sql = new Sql();
 	
 		$results = $sql->select("CALL sp_pricing_save(:id_pricing, :plan, :pricing, :deteils, :advanced)", array(
 			":id_pricing"=>$this->getid_princing(),
-      ":plan"=>$this->getplan(),
-      ":pricing"=>$this->getpricing(),
-      ":deteils"=>$this->getdeteils(),
-      ":advanced"=>$this->getadvanced()
+			":plan"=>$this->getplan(),
+			":pricing"=>$this->getpricing(),
+			":deteils"=>$this->getdeteils(),
+			":advanced"=>$this->getadvanced()
 		));
 		
 		$this->setData($results[0]);			
-  } 
+ 	 } 
   
-  public function delete()
+  	public function delete()
 	{		
 		$sql = new Sql();
 		
@@ -61,20 +61,7 @@ class Pricing extends Model{
 			':id_pricing'=>$this->getid_pricing()
 		]);
 	}
-
-	public function saveAsked()
-	{
-		
-		$sql = new Sql();
 	
-		$results = $sql->select("CALL sp_asked_save(:id_asked, :asked, :answer)", array(
-			":id_asked"=>$this->getid_asked(),
-      ":asked"=>$this->getasked(),
-      ":answer"=>$this->getanswer()
-		));
-		
-		$this->setData($results[0]);			
-  } 
 
 }
 

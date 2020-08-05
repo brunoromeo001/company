@@ -1,4 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -27,9 +27,9 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <p>
-                  {loop="$about_team"}
-                    {$value.text_about}
-                  {/loop}
+                  <?php $counter1=-1;  if( isset($about_team) && ( is_array($about_team) || $about_team instanceof Traversable ) && sizeof($about_team) ) foreach( $about_team as $key1 => $value1 ){ $counter1++; ?>
+                    <?php echo $value1["text_about"]; ?>
+                  <?php } ?>
                 </p>                
               </div>
               <div class="box-footer">                
@@ -63,41 +63,41 @@
                     <th>Ação</th>  
                   </tr>
                   <tr>
-                  {loop="$teams"}  
-                    <td>{$value.id_team}</td>
+                  <?php $counter1=-1;  if( isset($teams) && ( is_array($teams) || $teams instanceof Traversable ) && sizeof($teams) ) foreach( $teams as $key1 => $value1 ){ $counter1++; ?>  
+                    <td><?php echo $value1["id_team"]; ?></td>
                     <td><img src="/res/assets/img/team/team-1.jpg" alt="User Image" class="img-circle img-sm"></td>
-                    <td>{$value.name_team}</td>
-                    <td>{$value.function_team}</td>
+                    <td><?php echo $value1["name_team"]; ?></td>
+                    <td><?php echo $value1["function_team"]; ?></td>
                     <td>
-                    {if="($value.facebook_team)==''"}
-                    {else}
-                      <a href="{$value.facebook_team}" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
-                    {/if}
-                    {if="($value.twitter_team)==''"}
-                    {else}
-                      <a href="{$value.twitter_team}" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
-                    {/if}
-                    {if="($value.instagram_team)==''"}
-                    {else}
-                      <a href="{$value.instagram_team}" target="_blank" class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
-                    {/if}
-                    {if="($value.linkedin_team)==''"}
-                    {else}
-                      <a href="{$value.linkedin_team}" target="_blank" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                    {/if}
-                    {if="($value.facebook_team)=='' && ($value.twitter_team)=='' && ($value.instagram_team)=='' && ($value.linkedin_team)==''"}
+                    <?php if( ($value1["facebook_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["facebook_team"]; ?>" target="_blank" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["twitter_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["twitter_team"]; ?>" target="_blank" class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["instagram_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["instagram_team"]; ?>" target="_blank" class="btn btn-social-icon btn-instagram"><i class="fa fa-instagram"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["linkedin_team"])=='' ){ ?>
+                    <?php }else{ ?>
+                      <a href="<?php echo $value1["linkedin_team"]; ?>" target="_blank" class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                    <?php } ?>
+                    <?php if( ($value1["facebook_team"])=='' && ($value1["twitter_team"])=='' && ($value1["instagram_team"])=='' && ($value1["linkedin_team"])=='' ){ ?>
                       Sem mídias sociais
-                    {/if}
+                    <?php } ?>
                     </td>                  
                     <td>
-                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalTeamUpdate" data-id_team="{$value.id_team}" data-name_team="{$value.name_team}" data-function_team="{$value.function_team}" data-facebook_team="{$value.facebook_team}" data-twitter_team="{$value.twitter_team}" data-instagram_team="{$value.instagram_team}" data-linkedin_team="{$value.linkedin_team}">
+                      <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalTeamUpdate" data-id_team="<?php echo $value1["id_team"]; ?>" data-name_team="<?php echo $value1["name_team"]; ?>" data-function_team="<?php echo $value1["function_team"]; ?>" data-facebook_team="<?php echo $value1["facebook_team"]; ?>" data-twitter_team="<?php echo $value1["twitter_team"]; ?>" data-instagram_team="<?php echo $value1["instagram_team"]; ?>" data-linkedin_team="<?php echo $value1["linkedin_team"]; ?>">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Editar 
                       </button> 
-                      <a href="/admin/team/{$value.id_team}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <a href="/admin/team/<?php echo $value1["id_team"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
-                {/loop}
+                <?php } ?>
                 </tbody>
               </table>
             </div>

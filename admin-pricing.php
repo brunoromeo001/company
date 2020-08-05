@@ -3,6 +3,7 @@
 use \Company\PageAdmin;
 use \Company\DB\Sql;
 use \Company\Model\Pricing;
+use \Company\Model\Asked;
 
 $app->get('/admin/pricing', function(){
 
@@ -32,18 +33,6 @@ $app->post('/admin/pricing', function(){
     exit;
 });
 
-$app->post('/admin/asked-create', function(){
-
-    $asked = new Pricing();
-
-    $asked->setData($_POST);
-    
-    $asked->saveAsked();    
-
-    header("Location: /admin/pricing");
-    exit;
-});
-
 $app->get("/admin/pricing/{id_pricing}/delete", function($request, $response){		
     
     
@@ -53,12 +42,55 @@ $app->get("/admin/pricing/{id_pricing}/delete", function($request, $response){
     
     $pricing = new Pricing();    
 	
-    $pricing->get($intId_pricing);  
+    $pricing->get($intId_pricing); 
     
     $pricing->delete();
     	
     header("Location: /admin/pricing");
     exit;
 });
+
+
+$app->post('/admin/asked-create', function(){
+
+    $asked = new Asked();
+
+    $asked->setData($_POST);
+    
+    $asked->save();    
+
+    header("Location: /admin/pricing");
+    exit;
+});
+
+$app->post('/admin/asked-update', function($id_asked){
+
+    $asked = new Asked();
+
+    $asked->setData($_POST);    
+    
+    $asked->save();    
+
+    header("Location: /admin/pricing");
+    exit;
+});
+
+$app->get("/admin/asked/{id_asked}/delete", function($request, $response){		
+        
+    $id_asked = $request->getAttribute('id_asked');
+        
+    $intId_asked = (int)$id_asked;    
+    
+    $asked = new Asked();    
+	
+    $asked->get($intId_asked);  
+    
+    $asked->delete();
+    	
+    header("Location: /admin/pricing");
+    exit;
+});
+
+
 
 ?>

@@ -28,7 +28,7 @@ class Testimonials extends Model{
 
 	}
 	
-	public function saveTestimonials()
+	public function save()
 	{
 		
 		$sql = new Sql();
@@ -43,7 +43,7 @@ class Testimonials extends Model{
 		$this->setData($results[0]);			
 	} 
 
-	public function deleteTestimonials()
+	public function delete()
 	{		
 		$sql = new Sql();
 		
