@@ -2,20 +2,25 @@
 
 use \Company\PageAdmin;
 use \Company\DB\Sql;
-use \Company\Model\About;
+use \Company\Model\Team;
 use \Company\Model\AboutUs;
+use \Company\Model\Skill;
 use \Company\Model\Testimonials;
 
 $app->get('/admin/about-us', function(){
 
     $pageAdmin = new PageAdmin();
 
-    $textSkill = AboutUs::listTextSkill();
-    $skills = AboutUs::listAllSkills();
+    $textSkill = new Skill();
+
+    $textSkill->get(1);
+
+    $skills = Skill::listAllSkills();
+
     $clients = AboutUs::listAllClients();
     
-    $pageAdmin->setTpl('about-us',[
-        'textSkill'=>$textSkill,
+    $pageAdmin->setTpl('about-us',[        
+        'textSkill'=>$textSkill->getValues(),
         'skills'=>$skills,
         'clients'=>$clients
     ]);
@@ -25,7 +30,7 @@ $app->get('/admin/about-us', function(){
 
 $app->post('/admin/skill-update', function($id_skill){       
 
-    $skill = new AboutUs();
+    $skill = new Skill();
 
     $skill->setData($_POST);     
     
@@ -39,7 +44,7 @@ $app->post('/admin/skill-update', function($id_skill){
 
 $app->post('/admin/about-team', function(){
 
-    $team = new About();
+    $team = new Team();
 
     $team->setData($_POST);  
    
@@ -53,7 +58,7 @@ $app->post('/admin/about-team', function(){
 
 $app->post('/admin/text-skill', function(){
 
-    $textSkill = new AboutUs();
+    $textSkill = new Skill();
 
     $textSkill->setData($_POST);     
     
@@ -65,7 +70,7 @@ $app->post('/admin/text-skill', function(){
 
 $app->post('/admin/skill/create', function(){
 
-    $skill = new AboutUs();
+    $skill = new Skill();
 
     $skill->setData($_POST);     
     
@@ -105,13 +110,15 @@ $app->get('/admin/team', function(){
 
     $pageAdmin = new PageAdmin();
 
-    $team = About::listAllTeam();
+    $team = Team::listAllTeam();
 
-    $aboutTeam = About::listAboutTeam();
+    $aboutTeam = new Team();
+
+    $aboutTeam->get(1);
     
     $pageAdmin->setTpl('team', [
         'teams'=>$team,
-        'about_team'=>$aboutTeam
+        'aboutTeam'=>$aboutTeam->getvalues()
     ]);
 
     exit;
@@ -119,7 +126,7 @@ $app->get('/admin/team', function(){
 
 $app->post('/admin/team', function(){
 
-    $team = new About();
+    $team = new Team();
 
     $team->setData($_POST);  
    
@@ -135,7 +142,7 @@ $app->post('/admin/team', function(){
 
 $app->post('/admin/team-update', function($id_team){       
 
-    $team = new About();
+    $team = new Team();
 
     $team->setData($_POST);     
     
@@ -154,7 +161,7 @@ $app->get("/admin/team/{id_team}/delete", function($request, $response){
     
     $intId_team = (int)$id_team;    
     
-    $team = new About();    
+    $team = new Team();    
 	
     $team->get($intId_team);  
     
@@ -170,7 +177,7 @@ $app->get("/admin/skills/{id_skill}/delete", function($request, $response){
     
     $intId_skill = (int)$id_skill;    
     
-    $skill = new AboutUs();    
+    $skill = new Skill();    
 	
     $skill->getSkills($intId_skill);  
 

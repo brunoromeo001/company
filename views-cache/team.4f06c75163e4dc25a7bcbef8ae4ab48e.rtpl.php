@@ -27,9 +27,7 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <p>
-                  <?php $counter1=-1;  if( isset($about_team) && ( is_array($about_team) || $about_team instanceof Traversable ) && sizeof($about_team) ) foreach( $about_team as $key1 => $value1 ){ $counter1++; ?>
-                    <?php echo $value1["text_about"]; ?>
-                  <?php } ?>
+                  <?php echo $aboutTeam["text_about"]; ?>
                 </p>                
               </div>
               <div class="box-footer">                
@@ -122,10 +120,7 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label>Texto:</label>
-                    <textarea class="form-control" id="text" name="text_about" rows="3">
-                 
-
-                    </textarea>
+                    <textarea class="form-control" id="text" name="text_about" rows="3"><?php echo $aboutTeam["text_about"]; ?></textarea>
                   </div>
                 </div>
                 <!-- /.box-body -->                  
@@ -282,7 +277,7 @@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-success">Atualizar</button>
               </div>  
-              <input type="hidden"  id="id_team" name="id_team" >
+              <input type="hidden" id="id_team" name="id_team" >
             </form>
         </div>
       </div>

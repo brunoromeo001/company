@@ -83,10 +83,8 @@
               </div>
             </div>
             <div class="box-body">
-              <p>
-                {loop="$textSkill"} 
-                  {$value.text_skill}
-                {/loop}
+              <p>                
+                  {$textSkill.text_skill}                
               </p>
             </div>
             <!-- /.box-body -->
@@ -203,24 +201,22 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Editar texto nossas habilidades</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
+              <h4 class="modal-title" id="exampleModalLabel">Editar texto nossas habilidades</h4>
             </div>
             <div class="modal-body">
               <form method="post" action="/admin/text-skill">                                  
                 <div class="box-body">
                   <div class="form-group">
                     <label>Texto:</label>
-                    <textarea class="form-control" id="text_skill" name="text_skill" rows="3">                 
-
-                    </textarea>
+                    <textarea class="form-control" id="text_skill" name="text_skill" cols="3" rows="3">{$textSkill.text_skill}</textarea>                    
                   </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-success">Adicionar</button>
+                  <button type="submit" class="btn btn-success">Atualizar</button>
                 </div>             
               </form>
             </div>

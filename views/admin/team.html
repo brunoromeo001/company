@@ -27,9 +27,7 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <p>
-                  {loop="$about_team"}
-                    {$value.text_about}
-                  {/loop}
+                  {$aboutTeam.text_about}
                 </p>                
               </div>
               <div class="box-footer">                
@@ -122,10 +120,7 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label>Texto:</label>
-                    <textarea class="form-control" id="text" name="text_about" rows="3">
-                 
-
-                    </textarea>
+                    <textarea class="form-control" id="text" name="text_about" rows="3">{$aboutTeam.text_about}</textarea>
                   </div>
                 </div>
                 <!-- /.box-body -->                  
