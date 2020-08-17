@@ -63,7 +63,7 @@
                   <tr>
                   <?php $counter1=-1;  if( isset($teams) && ( is_array($teams) || $teams instanceof Traversable ) && sizeof($teams) ) foreach( $teams as $key1 => $value1 ){ $counter1++; ?>  
                     <td><?php echo $value1["id_team"]; ?></td>
-                    <td><img src="/res/assets/img/team/team-1.jpg" alt="User Image" class="img-circle img-sm"></td>
+                    <td><img src="/res/assets/img/team/team-<?php echo $value1["id_team"]; ?>.jpg" alt="User Image" class="img-circle img-sm"></td>
                     <td><?php echo $value1["name_team"]; ?></td>
                     <td><?php echo $value1["function_team"]; ?></td>
                     <td>
@@ -146,7 +146,7 @@
               <h4 class="modal-title" id="exampleModalLabel">Nova equipe </h4>
             </div>
             <div class="modal-body">
-              <form method="post" action="/admin/team-update" enctype="multipart/form-data">
+              <form method="post" action="/admin/team-create" enctype="multipart/form-data">
                 <div class="box-body">
                   <!-- Minimal style -->             
                   <!-- checkbox -->
@@ -201,7 +201,7 @@
                     <label for="file">Foto:</label>                    
                     <input type="file" class="form-control" id="file" name="file">          
                       <div class="box-body">
-                        <img class="img-responsive" id="image-preview" src="/res/assets/img/team/default.png" alt="Photos">
+                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Foto">
                       </div>              
                   </div>      
                 </div>
@@ -267,7 +267,7 @@
                   <label for="file">Foto:</label>                    
                   <input type="file" class="form-control" id="file" name="file">          
                     <div class="box-body">
-                      <img class="img-responsive" id="image-preview" src="/res/assets/img/team/default.png" alt="Photos">
+                      <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Foto">
                     </div>              
                 </div>      
               </div>
@@ -305,13 +305,13 @@
       // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
       // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
       var modal = $(this);
-      modal.find('#id_team').val(idTeam);
+      modal.find('#id_team').val(idTeam);      
       modal.find('#name_team').val(nameTeam);
       modal.find('#function_team').val(functionTeam);
       modal.find('#facebook_team').val(facebookTeam);
       modal.find('#twitter_team').val(twitterTeam);
       modal.find('#instagram_team').val(instagramTeam);
-      modal.find('#linkedin_team').val(linkedinTeam);
+      modal.find('#linkedin_team').val(linkedinTeam);      
     });
 
   

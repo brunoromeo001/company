@@ -1,4 +1,4 @@
-  <main id="main">
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">

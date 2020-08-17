@@ -17,6 +17,18 @@ class Team extends Model{
 		]);
 		
 		$this->setData($results[0]);
+	}	
+	
+	public function getTeam($id_team)
+	{
+		
+		$sql = new Sql();
+		
+		$results = $sql->select("SELECT * FROM tb_team WHERE id_team = :id_team", [
+			':id_team'=>$id_team
+		]);
+		
+		$this->setData($results[0]);
   }	
   
   public static function listAllTeam()
@@ -86,10 +98,10 @@ class Team extends Model{
 			"assets" . DIRECTORY_SEPARATOR .
 			"img" . DIRECTORY_SEPARATOR .
 			"team" . DIRECTORY_SEPARATOR .
-			$this->getidteam() . ".jpg"
+			"team-" . $this->getid_team() . ".jpg"
 		)){
 			
-			$url = "/res/assets/img/team/" . $this->getidteam() . ".jpg";
+			$url = "/res/assets/img/team/team-" . $this->getid_team() . ".jpg";
 		}else{
 			
 			$url = "/res/assets/img/deault.jpg";
@@ -136,7 +148,7 @@ class Team extends Model{
 			"assets" . DIRECTORY_SEPARATOR .
 			"img" . DIRECTORY_SEPARATOR .
 			"team" . DIRECTORY_SEPARATOR .
-			$this->getidteam() . ".jpg";
+			"team-" . $this->getid_team() . ".jpg";
 		
 		imagejpeg($image, $dist);
 		

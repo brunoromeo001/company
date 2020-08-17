@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 05-Ago-2020 às 08:50
+-- Generation Time: 17-Ago-2020 às 21:49
 -- Versão do servidor: 8.0.20
 -- versão do PHP: 7.3.5
 
@@ -48,6 +48,36 @@ BEGIN
     END IF;
     
     SELECT * FROM tb_about_team WHERE id_about_team = pid_about_team;
+END$$
+
+DROP PROCEDURE IF EXISTS `sp_about_us`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_about_us` (IN `pid_about_us` INT(2), IN `ptittle_about` VARCHAR(255), IN `psubtittle_about` VARCHAR(255), IN `ptext_about` TEXT, IN `plist_one` VARCHAR(255), IN `plist_two` VARCHAR(255), IN `plist_tree` VARCHAR(255), IN `plast_text` TEXT)  NO SQL
+BEGIN
+	
+	IF pid_about_us > 0 THEN
+		
+		UPDATE tb_about_us
+      SET 
+        tittle_about = ptittle_about,
+        subtittle_about = psubtittle_about,
+        text_about = ptext_about,
+        list_one = plist_one,
+        list_two = plist_two,
+        list_tree = plist_tree,
+        last_text = plast_text       
+      WHERE id_about_us = pid_about_us;
+        
+  ELSE
+
+		INSERT INTO tb_about_us (tittle_about, subtittle_about, text_about, list_one, list_two, list_tree, last_text) 
+      VALUES(ptittle_about, psubtittle_about, ptext_about, plist_one, plist_two, plist_tree, plast_text);
+      
+      SET pid_about_us = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_about_us WHERE id_about_us = pid_about_us;
+    
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_asked_save`$$
@@ -243,14 +273,44 @@ CREATE TABLE IF NOT EXISTS `tb_about_team` (
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_about_team`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `tb_about_team`
 --
 
 INSERT INTO `tb_about_team` (`id_about_team`, `text_about`, `dt_update`) VALUES
-(1, 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', '2020-07-19 14:17:35');
+(1, 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.\r\n                    ', '2020-08-17 17:45:54'),
+(3, '1\r\n\r\n                    ', NULL),
+(4, 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas. ', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tb_about_us`
+--
+
+DROP TABLE IF EXISTS `tb_about_us`;
+CREATE TABLE IF NOT EXISTS `tb_about_us` (
+  `id_about_us` int NOT NULL AUTO_INCREMENT,
+  `tittle_about` varchar(255) NOT NULL,
+  `subtittle_about` varchar(255) NOT NULL,
+  `text_about` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `list_one` varchar(255) NOT NULL,
+  `list_two` varchar(255) NOT NULL,
+  `list_tree` varchar(255) NOT NULL,
+  `last_text` text NOT NULL,
+  `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_about_us`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `tb_about_us`
+--
+
+INSERT INTO `tb_about_us` (`id_about_us`, `tittle_about`, `subtittle_about`, `text_about`, `list_one`, `list_two`, `list_tree`, `last_text`, `dt_update`) VALUES
+(1, ' Eum ipsam laborum deleniti velitena Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave ', ' Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave ', ' Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ', ' Ullamco laboris nisi ut aliquip ex ea commodo consequa', ' Duis aute irure dolor in reprehenderit in voluptate velit', ' Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in', ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ', NULL);
 
 -- --------------------------------------------------------
 
@@ -286,14 +346,14 @@ CREATE TABLE IF NOT EXISTS `tb_askeds` (
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_asked`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `tb_askeds`
 --
 
 INSERT INTO `tb_askeds` (`id_asked`, `asked`, `answer`, `dt_update`) VALUES
-(1, 'mas o que', 'o que de queijo', '2020-08-05 05:49:57');
+(1, 'Non consectetur a erat nam at lectus urna duis?', 'Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. ', '2020-08-05 06:20:30');
 
 -- --------------------------------------------------------
 
@@ -461,7 +521,7 @@ INSERT INTO `tb_team` (`id_team`, `name_team`, `function_team`, `facebook_team`,
 (1, 'Walter White', 'Chief Executive Officer', '', '', '', ''),
 (2, 'Sarah Jhonson', 'Product Manager', '', '', '', ''),
 (3, 'William Anderson', 'CTO', '', '', '', ''),
-(4, 'Amanda Jepson', 'Accountant', 'https://www.facebook.com/', '_team', '_team', '_team');
+(4, 'Amanda Jepson', 'Accountant', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -478,7 +538,14 @@ CREATE TABLE IF NOT EXISTS `tb_testimonials` (
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_testimonials`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Extraindo dados da tabela `tb_testimonials`
+--
+
+INSERT INTO `tb_testimonials` (`id_testimonials`, `name_testimonials`, `profession_testimonials`, `testimonials`, `dt_update`) VALUES
+(4, 'Jeffeson', 'Tecnico', '52', NULL);
 
 -- --------------------------------------------------------
 
@@ -500,7 +567,7 @@ CREATE TABLE IF NOT EXISTS `tb_text_skill` (
 --
 
 INSERT INTO `tb_text_skill` (`id_text_skill`, `text_skill`, `dt_update`) VALUES
-(1, '                 \r\n\r\n                Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', '2020-07-22 19:51:56');
+(1, 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.', '2020-08-06 05:39:30');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

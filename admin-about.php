@@ -13,13 +13,18 @@ $app->get('/admin/about-us', function(){
 
     $textSkill = new Skill();
 
+    $aboutUs = new AboutUs();
+
     $textSkill->get(1);
+
+    $aboutUs->get(1);
 
     $skills = Skill::listAllSkills();
 
     $clients = AboutUs::listAllClients();
     
     $pageAdmin->setTpl('about-us',[        
+        'aboutUs'=>$aboutUs->getValues(),
         'textSkill'=>$textSkill->getValues(),
         'skills'=>$skills,
         'clients'=>$clients
@@ -124,15 +129,13 @@ $app->get('/admin/team', function(){
     exit;
 });
 
-$app->post('/admin/team', function(){
+$app->post('/admin/team-create', function(){
 
     $team = new Team();
 
     $team->setData($_POST);  
    
-    $team->saveTeam();
-
-   //$team->setPhoto($_FILES["file"]);
+    $team->saveTeam();   
 
     if($_FILES["file"]["name"] !== "") $team->setPhoto($_FILES['file']);
 
@@ -148,12 +151,12 @@ $app->post('/admin/team-update', function($id_team){
     
     $team->saveTeam();   
 
+    if($_FILES["file"]["name"] !== "") $team->setPhoto($_FILES['file']);
+
     header("Location: /admin/team");
     exit;
    
 });
-
-
 
 $app->get("/admin/team/{id_team}/delete", function($request, $response){		
     
@@ -163,7 +166,7 @@ $app->get("/admin/team/{id_team}/delete", function($request, $response){
     
     $team = new Team();    
 	
-    $team->get($intId_team);  
+    $team->getTeam($intId_team);  
     
     $team->deleteTeam();
     

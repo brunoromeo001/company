@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
@@ -51,13 +51,13 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-        {if="$pageName == ''"}
+        <?php if( $pageName == '' ){ ?>
           <li class="active"><a href="/">Home</a></li>
-        {else}
+        <?php }else{ ?>
           <li><a href="/">Home</a></li>
-        {/if}
+        <?php } ?>
         
-        {if="substr_count($pageName, 'sobre')"}
+        <?php if( substr_count($pageName, 'sobre') ){ ?>
           <li class="drop-down active"><a href="">About</a>
             <ul>
               <li class="active"><a href="/sobre">About Us</a></li>
@@ -74,7 +74,7 @@
               </li>
             </ul>
           </li>
-        {elseif="substr_count($pageName, 'equipe')"}
+        <?php }elseif( substr_count($pageName, 'equipe') ){ ?>
           <li class="drop-down active"><a href="">About</a>
             <ul>
               <li><a href="/sobre">About Us</a></li>
@@ -91,7 +91,7 @@
               </li>
             </ul>
           </li>
-        {elseif="substr_count($pageName, 'testemunhas')"}
+        <?php }elseif( substr_count($pageName, 'testemunhas') ){ ?>
           <li class="drop-down active"><a href="">About</a>
             <ul>
               <li><a href="/sobre">About Us</a></li>
@@ -108,7 +108,7 @@
               </li>
             </ul>
           </li>
-        {else}
+        <?php }else{ ?>
           <li class="drop-down"><a href="">About</a>
             <ul>
               <li><a href="/sobre">About Us</a></li>
@@ -125,32 +125,32 @@
               </li>
             </ul>
           </li>
-        {/if}
-          {if="$pageName == 'servicos'"}
+        <?php } ?>
+          <?php if( $pageName == 'servicos' ){ ?>
           <li class="active"><a href="/servicos">Services</a></li>
-          {else}
+          <?php }else{ ?>
           <li><a href="/servicos">Services</a></li>
-          {/if}
-          {if="$pageName == 'portifolio'"}
+          <?php } ?>
+          <?php if( $pageName == 'portifolio' ){ ?>
           <li class="active"><a href="/portifolio">Portfolio</a></li>
-          {else}
+          <?php }else{ ?>
           <li><a href="/portifolio">Portfolio</a></li>
-          {/if}
-          {if="$pageName == 'precos'"}
+          <?php } ?>
+          <?php if( $pageName == 'precos' ){ ?>
           <li class="active"><a href="/precos">Pricing</a></li>
-          {else}
+          <?php }else{ ?>
           <li><a href="/precos">Pricing</a></li>
-          {/if}
-          {if="$pageName == 'blog'"}
+          <?php } ?>
+          <?php if( $pageName == 'blog' ){ ?>
           <li class="active"><a href="/blog">Blog</a></li>
-          {else}
+          <?php }else{ ?>
           <li><a href="/blog">Blog</a></li>
-          {/if}
-          {if="$pageName == 'contato'"}
+          <?php } ?>
+          <?php if( $pageName == 'contato' ){ ?>
           <li class="active"><a href="/contato">Contact</a></li>
-          {else}
+          <?php }else{ ?>
           <li><a href="/contato">Contact</a></li>
-          {/if}
+          <?php } ?>
         </ul>
       </nav><!-- .nav-menu -->
 

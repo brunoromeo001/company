@@ -36,25 +36,24 @@
             <div class="box-body">
              <div class="col-md-6">
               <h2>
-                Eum ipsam laborum deleniti velitena
-                Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave
+                <?php echo $aboutUs["tittle_about"]; ?>                
               </h2>
               <h3>
-                Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave
+                <?php echo $aboutUs["subtittle_about"]; ?>
               </h3>
               
              </div>             
              <div class="col-md-6">
               <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum 
+                <?php echo $aboutUs["text_about"]; ?>
               </p>
               <ul>
-                <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-                <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-                <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+                <li><i class="ri-check-double-line"></i> <?php echo $aboutUs["list_one"]; ?></li>
+                <li><i class="ri-check-double-line"></i> <?php echo $aboutUs["list_two"]; ?></li>
+                <li><i class="ri-check-double-line"></i> <?php echo $aboutUs["list_tree"]; ?></li>
               </ul>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                <?php echo $aboutUs["last_text"]; ?>
               </p>
               
              </div>
