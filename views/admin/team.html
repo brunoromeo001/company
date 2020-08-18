@@ -313,8 +313,7 @@
       modal.find('#twitter_team').val(twitterTeam);
       modal.find('#instagram_team').val(instagramTeam);
       modal.find('#linkedin_team').val(linkedinTeam);
-      modal.find('#image-preview-update').attr('src', "/res/assets/img/team/team-"+idTeam);
-      
+      modal.find('#image-preview-update').attr('src', "/res/assets/img/team/team-"+idTeam);      
     });
 
     document.querySelector('#file-create').addEventListener('change', function(){

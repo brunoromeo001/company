@@ -229,6 +229,8 @@ $app->post('/admin/testimonials', function(){
    
     $testimonials->save();  
 
+    if($_FILES["file"]["name"] !== "") $testimonials->setPhoto($_FILES['file']);
+
     header("Location: /admin/testimonials");
     exit;
 });
@@ -240,6 +242,8 @@ $app->post('/admin/testimonials-update', function($id_testimonials){
     $testimonials->setData($_POST);        
   
     $testimonials->save();    
+    
+    if($_FILES["file"]["name"] !== "") $testimonials->setPhoto($_FILES['file']);
 
     header("Location: /admin/testimonials");
     exit;

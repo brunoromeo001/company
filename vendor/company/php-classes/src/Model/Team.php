@@ -89,7 +89,7 @@ class Team extends Model{
 		]);
   }
   
-  public function checkPhotoTeam()
+/*   public function checkPhotoTeam()
 	{
 		
 		if (file_exists(
@@ -109,13 +109,11 @@ class Team extends Model{
 		
 		return $this->setdesphoto($url);
 		
-	}
+	} */
 
 	public function getValues()
-	{
-		
-		$this->checkPhoto();
-		
+	{				
+				
 		$values = parent::getValues();
 		
 		return $values;
@@ -154,7 +152,7 @@ class Team extends Model{
 		
 		imagedestroy($image);
 		
-		$this->checkPhoto();
+		//$this->checkPhoto();
 	}		
 
 }

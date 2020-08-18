@@ -3,8 +3,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Testimonials
-        <small>Lista das testemunhas</small>
+        Depoimentos        
       </h1>
       <ol class="breadcrumb">
         <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>        
@@ -36,14 +35,14 @@
                   </tr>
                   <?php $counter1=-1;  if( isset($testimonials) && ( is_array($testimonials) || $testimonials instanceof Traversable ) && sizeof($testimonials) ) foreach( $testimonials as $key1 => $value1 ){ $counter1++; ?>
                   <tr>
-                    <td><?php echo $value1["id_testimonials"]; ?></td>
-                    <td><img src="/res/assets/img/testimonials/testimonials-1.jpg" alt="User Image" class="img-circle img-sm"></td>
-                    <td><?php echo $value1["name_testimonials"]; ?></td>
-                    <td><?php echo $value1["profession_testimonials"]; ?></td>
-                    <td><?php echo $value1["testimonials"]; ?></td>
+                    <td><?php echo $value1["id_testimonial"]; ?></td>
+                    <td><img src="/res/assets/img/testimonials/testimonial-<?php echo $value1["id_testimonial"]; ?>.jpg" alt="User Image" class="img-circle img-sm"></td>
+                    <td><?php echo $value1["name_testimonial"]; ?></td>
+                    <td><?php echo $value1["profession_testimonial"]; ?></td>
+                    <td><?php echo $value1["testimonial"]; ?></td>
                     <td>
-                      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalTestimonialUpdate" data-id_testimonials="<?php echo $value1["id_testimonials"]; ?>" data-name_testimonials="<?php echo $value1["name_testimonials"]; ?>" data-profession_testimonials="<?php echo $value1["profession_testimonials"]; ?>" data-testimonials="<?php echo $value1["testimonials"]; ?>"><i class="fa fa-edit"></i> Editar</button>                      
-                      <a href="/admin/testimonials/<?php echo $value1["id_testimonials"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
+                      <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalTestimonialUpdate" data-id_testimonial="<?php echo $value1["id_testimonial"]; ?>" data-name_testimonial="<?php echo $value1["name_testimonial"]; ?>" data-profession_testimonial="<?php echo $value1["profession_testimonial"]; ?>" data-testimonial="<?php echo $value1["testimonial"]; ?>"><i class="fa fa-edit"></i> Editar</button>                      
+                      <a href="/admin/testimonials/<?php echo $value1["id_testimonial"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>
                   </tr>
                   <?php } ?>
@@ -78,21 +77,21 @@
             <div class="box-body">
               <div class="form-group">
                 <label>Nome:</label>
-                <input type="text" class="form-control" name="name_testimonials" placeholder="Informe o nome ">
+                <input type="text" class="form-control" name="name_testimonial" placeholder="Informe o nome ">
               </div>
               <div class="form-group">
                 <label>Profissão:</label>
-                <input type="text" class="form-control" name="profession_testimonials" placeholder="Informe a profissão">
+                <input type="text" class="form-control" name="profession_testimonial" placeholder="Informe a profissão">
               </div>   
               <div class="form-group">
                 <label>Depoimento:</label>
-                <textarea class="form-control" id="testimonials" name="testimonials" rows="3"></textarea>
+                <textarea class="form-control" name="testimonial" rows="3"></textarea>
               </div>                   
               <div class="form-group">
                 <label for="file">Foto:</label>                    
-                <input type="file" class="form-control" id="file" name="file">          
+                <input type="file" class="form-control" id="file-create" name="file">          
                   <div class="box-body">
-                    <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                    <img class="img-responsive" id="image-preview-create" src="/res/assets/img/default.jpg" alt="Foto">
                   </div>              
               </div>      
             </div>
@@ -123,21 +122,21 @@
             <div class="box-body">
               <div class="form-group">
                 <label>Nome:</label>
-                <input type="text" class="form-control" id="name_testimonials" name="name_testimonials" placeholder="Informe o nome ">
+                <input type="text" class="form-control" id="name_testimonial" name="name_testimonial" placeholder="Informe o nome ">
               </div>
               <div class="form-group">
                 <label>Profissão:</label>
-                <input type="text" class="form-control" id="profession_testimonials" name="profession_testimonials" placeholder="Informe a profissão">
+                <input type="text" class="form-control" id="profession_testimonial" name="profession_testimonial" placeholder="Informe a profissão">
               </div>   
               <div class="form-group">
                 <label>Depoimento:</label>
-                <textarea class="form-control" id="testimonials" name="testimonials" rows="3"></textarea>
+                <textarea class="form-control" id="testimonial" name="testimonial" rows="3"></textarea>
               </div>                   
               <div class="form-group">
                 <label for="file">Foto:</label>                    
-                <input type="file" class="form-control" id="file" name="file">          
+                <input type="file" class="form-control" id="file-update" name="file">          
                   <div class="box-body">
-                    <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                    <img class="img-responsive" id="image-preview-update" alt="Photos">
                   </div>              
               </div>      
             </div>
@@ -146,7 +145,7 @@
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-success">Atualizar</button>
             </div>             
-            <input type="hidden" id="id_testimonials" name="id_testimonials" >
+            <input type="hidden" id="id_testimonial" name="id_testimonial" >
           </form>
         </div>
       </div>
@@ -160,34 +159,49 @@
       // Função para prencher os campos do modalTestimonialUpdate 
       $('#modalTestimonialUpdate').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
-        var idTestimonials = button.data('id_testimonials');// Extract info from data-* attributes
-        var nameTestimonials = button.data('name_testimonials');
-        var professionTestimonials = button.data('profession_testimonials');
-        var testimonials = button.data('testimonials');
+        var idTestimonial = button.data('id_testimonial');// Extract info from data-* attributes
+        var nameTestimonial = button.data('name_testimonial');
+        var professionTestimonial = button.data('profession_testimonial');
+        var testimonial = button.data('testimonial');
   
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this);
-        modal.find('#id_testimonials').val(idTestimonials);
-        modal.find('#name_testimonials').val(nameTestimonials);
-        modal.find('#profession_testimonials').val(professionTestimonials);
-        modal.find('#testimonials').val(testimonials);;
+        modal.find('#id_testimonial').val(idTestimonial);
+        modal.find('#name_testimonial').val(nameTestimonial);
+        modal.find('#profession_testimonial').val(professionTestimonial);
+        modal.find('#testimonial').val(testimonial);
+        modal.find('#image-preview-update').attr('src', "/res/assets/img/testimonials/testimonial-"+idTestimonial);
       });
   
     
-      document.querySelector('#file').addEventListener('change', function(){
+      document.querySelector('#file-create').addEventListener('change', function(){
   
         var file = new FileReader();
   
         file.onload = function() {
           
-          document.querySelector('#image-preview').src = file.result;
+          document.querySelector('#image-preview-create').src = file.result;
   
         }
   
         file.readAsDataURL(this.files[0]);
   
       });    
+
+      document.querySelector('#file-update').addEventListener('change', function(){
+  
+        var file = new FileReader();
+  
+        file.onload = function() {
+          
+          document.querySelector('#image-preview-update').src = file.result;
+  
+        }
+  
+        file.readAsDataURL(this.files[0]);
+  
+      }); 
     });
   
     
