@@ -199,9 +199,9 @@
                   </div>    
                   <div class="form-group">
                     <label for="file">Foto:</label>                    
-                    <input type="file" class="form-control" id="file" name="file">          
+                    <input type="file" class="form-control" id="file-create" name="file">          
                       <div class="box-body">
-                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Foto">
+                        <img class="img-responsive" id="image-preview-create" src="/res/assets/img/default.jpg" alt="Foto">
                       </div>              
                   </div>      
                 </div>
@@ -265,9 +265,10 @@
                 </div>    
                 <div class="form-group">
                   <label for="file">Foto:</label>                    
-                  <input type="file" class="form-control" id="file" name="file">          
+                  <input type="file" class="form-control" id="file-update" name="file">          
                     <div class="box-body">
-                      <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Foto">
+                      <!-- <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Foto"> -->
+                      <img class="img-responsive" id="image-preview-update" alt="Foto">
                     </div>              
                 </div>      
               </div>
@@ -311,17 +312,33 @@
       modal.find('#facebook_team').val(facebookTeam);
       modal.find('#twitter_team').val(twitterTeam);
       modal.find('#instagram_team').val(instagramTeam);
-      modal.find('#linkedin_team').val(linkedinTeam);      
+      modal.find('#linkedin_team').val(linkedinTeam);
+      modal.find('#image-preview-update').attr('src', "/res/assets/img/team/team-"+idTeam);
+      
     });
 
-  
-    document.querySelector('#file').addEventListener('change', function(){
+    document.querySelector('#file-create').addEventListener('change', function(){
 
       var file = new FileReader();
 
       file.onload = function() {
         
-        document.querySelector('#image-preview').src = file.result;
+        document.querySelector('#image-preview-create').src = file.result;        
+
+      }
+
+      file.readAsDataURL(this.files[0]);
+
+    });  
+
+  
+    document.querySelector('#file-update').addEventListener('change', function(){
+
+      var file = new FileReader();
+
+      file.onload = function() {
+        
+        document.querySelector('#image-preview-update').src = file.result;        
 
       }
 
