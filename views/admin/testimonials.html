@@ -171,7 +171,7 @@
         modal.find('#name_testimonial').val(nameTestimonial);
         modal.find('#profession_testimonial').val(professionTestimonial);
         modal.find('#testimonial').val(testimonial);
-        modal.find('#image-preview-update').attr('src', "/res/assets/img/testimonials/testimonial-"+idTestimonial);
+        modal.find('#image-preview-update').attr('src', "/res/assets/img/testimonials/testimonial-"+idTestimonial+".jpg");
       });
   
     

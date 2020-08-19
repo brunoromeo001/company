@@ -92,18 +92,22 @@ $app->post('/admin/client/create', function(){
     $client->setData($_POST);     
     
     $client->saveClient();   
+    
+    if($_FILES["file"]["name"] !== "") $client->setPhoto($_FILES['file']);
 
     header("Location: /admin/about-us");
     exit;
 });
 
-$app->post('/admin/client-update', function($id_skill){       
+$app->post('/admin/client/update', function($id_skill){       
 
     $client = new AboutUs();
 
     $client->setData($_POST);     
     
     $client->saveClient();   
+
+    if($_FILES["file"]["name"] !== "") $client->setPhoto($_FILES['file']);
 
     header("Location: /admin/about-us");
     exit;
@@ -242,7 +246,7 @@ $app->post('/admin/testimonials-update', function($id_testimonials){
     $testimonials->setData($_POST);        
   
     $testimonials->save();    
-    
+
     if($_FILES["file"]["name"] !== "") $testimonials->setPhoto($_FILES['file']);
 
     header("Location: /admin/testimonials");

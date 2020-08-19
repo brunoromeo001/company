@@ -116,6 +116,7 @@
                     <th>ID</th>
                     <th>Habilidade</th>
                     <th>Porcentagem</th>                     
+                    <th>Ação</th>
                   </tr>
                   <?php $counter1=-1;  if( isset($skills) && ( is_array($skills) || $skills instanceof Traversable ) && sizeof($skills) ) foreach( $skills as $key1 => $value1 ){ $counter1++; ?>
                   <tr>                  
@@ -166,12 +167,17 @@
                   <tr>
                     <th>ID</th>
                     <th>Foto</th>
-                    <th>Cliente</th>                     
+                    <th>Cliente</th>
+                    <th>Ação</th>
                   </tr>
                   <?php $counter1=-1;  if( isset($clients) && ( is_array($clients) || $clients instanceof Traversable ) && sizeof($clients) ) foreach( $clients as $key1 => $value1 ){ $counter1++; ?>
                   <tr>                  
-                    <td><?php echo $value1["id_client"]; ?></td>         
-                    <td><img src="/res/assets/img/clients/client-1.png" alt="User Image" class="img-circle img-sm"></td>             
+                    <td><?php echo $value1["id_client"]; ?></td>
+                    <?php if( $value1["site_client"] !== '' ){ ?>
+                    <td><a href="<?php echo $value1["site_client"]; ?>" target="_blank"><img src="/res/assets/img/clients/client-<?php echo $value1["id_client"]; ?>.png" alt="Logo" width="60px" height="30px"></a></td>
+                    <?php }else{ ?>
+                    <td><img src="/res/assets/img/clients/client-<?php echo $value1["id_client"]; ?>.png" alt="Logo" width="60px" height="30px"></td>
+                    <?php } ?>
                     <td><?php echo $value1["name_client"]; ?></td>                    
                     <td>
                       <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalClientUpdate" data-id_client="<?php echo $value1["id_client"]; ?>" data-name_client="<?php echo $value1["name_client"]; ?>" data-site_client="<?php echo $value1["site_client"]; ?>">
@@ -223,14 +229,15 @@
         </div>
       </div>
 
+      <!-- MODAL Create Skill -->
       <div class="modal fade" id="modalSkillCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Adcionar nova habilidade</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
+              <h4 class="modal-title" id="exampleModalLabel">Adcionar nova habilidade</h4>
             </div>
             <div class="modal-body">
               <form method="post" action="/admin/skill/create">                                  
@@ -254,6 +261,7 @@
         </div>
       </div>
 
+      <!-- MODAL Update Skill -->
       <div class="modal fade" id="modalSkillUpdade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -286,32 +294,32 @@
         </div>
       </div>
 
-      <!-- MODAL nossos clientes -->
+      <!-- MODAL Create Client -->
       <div class="modal fade" id="modalClientCreate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title" id="exampleModalLabel">Adcionar novo cliente </h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                 <span aria-hidden="true">&times;</span>
               </button>
+              <h4 class="modal-title" id="exampleModalLabel">Adcionar novo cliente </h4>
             </div>
             <div class="modal-body">
               <form method="post" action="/admin/client/create" enctype="multipart/form-data">                                  
                 <div class="box-body">
                   <div class="form-group">
                     <label>Nome do cliente:</label>
-                    <input type="text" class="form-control" name="name_client" placeholder="Informe o nome da habilidade">
+                    <input type="text" class="form-control" name="name_client" placeholder="Informe o nome do cliente">
                   </div>
                   <div class="form-group">
                     <label>Site:</label>
-                    <input type="text" class="form-control" name="site_client" placeholder="Informe o nível">
+                    <input type="text" class="form-control" name="site_client" placeholder="Ex.: http://www.empresa.com.br">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group">0
                     <label for="file">Logo:</label>                    
-                    <input type="file" class="form-control" id="file" name="file">          
+                    <input type="file" class="form-control" id="file-create" name="file">          
                       <div class="box-body">
-                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                        <img class="img-responsive" id="image-preview-create" src="/res/assets/img/clients/default.png" alt="Logo">
                       </div>              
                   </div> 
                 </div>
@@ -324,7 +332,8 @@
           </div>
         </div>
       </div>
-
+      
+      <!-- MODAL Update Client -->  
       <div class="modal fade" id="modalClientUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -335,7 +344,7 @@
               <h4 class="modal-title" id="exampleModalLabel">Editar cliente </h4>
             </div>
             <div class="modal-body">
-              <form method="post" action="/admin/client/create" enctype="multipart/form-data">                                  
+              <form method="post" action="/admin/client/update" enctype="multipart/form-data">                                  
                 <div class="box-body">
                   <div class="form-group">
                     <label>Nome do cliente:</label>
@@ -347,9 +356,9 @@
                   </div>
                   <div class="form-group">
                     <label for="file">Logo:</label>                    
-                    <input type="file" class="form-control" id="file" name="file">          
+                    <input type="file" class="form-control" id="file-update" name="file">          
                       <div class="box-body">
-                        <img class="img-responsive" id="image-preview" src="/res/assets/img/default.jpg" alt="Photos">
+                        <img class="img-responsive" id="image-preview-update" alt="Logo">
                       </div>              
                   </div> 
                 </div>
@@ -373,43 +382,56 @@
   scripts.push(function(){
 
     // Função para prencher os campos do modalClientUpdate 
-   $('#modalClientUpdate').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    var idClient = button.data('id_client');// Extract info from data-* attributes
-    var nameClient = button.data('name_client');
-    var siteClient = button.data('site_client');
-    
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this);
-    modal.find('#id_client').val(idClient);
-    modal.find('#name_client').val(nameClient);
-    modal.find('#site_client').val(siteClient);
-		  
-	});
+    $('#modalClientUpdate').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var idClient = button.data('id_client');// Extract info from data-* attributes
+      var nameClient = button.data('name_client');
+      var siteClient = button.data('site_client');
+      
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('#id_client').val(idClient);
+      modal.find('#name_client').val(nameClient);
+      modal.find('#site_client').val(siteClient);
+		  modal.find('#image-preview-update').attr('src', "/res/assets/img/clients/client-"+idClient+".png");
+	  });
 
-  // Função para prencher os campos do modalSkillUpdade  
-  $('#modalSkillUpdade').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    var idSkill = button.data('id_skill');// Extract info from data-* attributes
-    var nameSkill = button.data('name_skill');
-    var valueSkill = button.data('value_skill');
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this);
-    modal.find('#id_skill').val(idSkill);
-    modal.find('#name_skill').val(nameSkill);
-    modal.find('#value_skill').val(valueSkill);
-		  
-	});
-  
-    document.querySelector('#file').addEventListener('change', function(){
+    // Função para prencher os campos do modalSkillUpdade  
+    $('#modalSkillUpdade').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget); // Button that triggered the modal
+      var idSkill = button.data('id_skill');// Extract info from data-* attributes
+      var nameSkill = button.data('name_skill');
+      var valueSkill = button.data('value_skill');
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = $(this);
+      modal.find('#id_skill').val(idSkill);
+      modal.find('#name_skill').val(nameSkill);
+      modal.find('#value_skill').val(valueSkill);      
+    });
+
+    document.querySelector('#file-create').addEventListener('change', function(){
 
       var file = new FileReader();
 
       file.onload = function() {
         
-        document.querySelector('#image-preview').src = file.result;
+        document.querySelector('#image-preview-create').src = file.result;
+
+      }
+
+      file.readAsDataURL(this.files[0]);
+
+    });  
+  
+    document.querySelector('#file-update').addEventListener('change', function(){
+
+      var file = new FileReader();
+
+      file.onload = function() {
+        
+        document.querySelector('#image-preview-update').src = file.result;
 
       }
 

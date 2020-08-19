@@ -1,13 +1,17 @@
 <?php
 
 use Company\Page;
-
+use \Company\Model\Skill;
 
 $app->get('/sobre', function () {
     
     $page = new Page();
+
+    $skills = Skill::listAllSkills();
     
-    $page->setTpl("about");   
+    $page->setTpl("about",[
+        "skill"=>$skills
+    ]);   
 
     exit;
 });

@@ -62,38 +62,7 @@ class AboutUs extends Model{
 			':id_client'=>$this->getid_client()
 		]);
 	}
-
-	public function checkPhotoTeam()
-	{
-		
-		if (file_exists(
-			$_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .
-			"res" . DIRECTORY_SEPARATOR .
-			"assets" . DIRECTORY_SEPARATOR .
-			"img" . DIRECTORY_SEPARATOR .
-			"team" . DIRECTORY_SEPARATOR .
-			$this->getidteam() . ".jpg"
-		)){
-			
-			$url = "/res/assets/img/team/" . $this->getidteam() . ".jpg";
-		}else{
-			
-			$url = "/res/assets/img/deault.jpg";
-		}
-		
-		return $this->setdesphoto($url);
-		
-	}
-
-	public function getValues()
-	{
-		
-		$this->checkPhoto();
-		
-		$values = parent::getValues();
-		
-		return $values;
-	}
+	
 	
 	public function setPhoto($file)
 	{
@@ -121,14 +90,13 @@ class AboutUs extends Model{
 			"res" . DIRECTORY_SEPARATOR .
 			"assets" . DIRECTORY_SEPARATOR .
 			"img" . DIRECTORY_SEPARATOR .
-			"team" . DIRECTORY_SEPARATOR .
-			$this->getidteam() . ".jpg";
+			"clients" . DIRECTORY_SEPARATOR .
+			"client-" . $this->getid_client() . ".png";
 		
-		imagejpeg($image, $dist);
+		imagepng($image, $dist);
 		
-		imagedestroy($image);
+		imagedestroy($image);		
 		
-		$this->checkPhoto();
 	}		
 }
 

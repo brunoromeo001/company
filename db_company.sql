@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 17-Ago-2020 às 21:49
+-- Generation Time: 19-Ago-2020 às 00:31
 -- Versão do servidor: 8.0.20
 -- versão do PHP: 7.3.5
 
@@ -208,28 +208,28 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS `sp_testimonials_save`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_testimonials_save` (IN `pid_testimonials` INT(11), IN `pname_testimonials` VARCHAR(100), IN `pprofession_testimonials` VARCHAR(100), IN `ptestimonials` TEXT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_testimonials_save` (IN `pid_testimonial` INT(11), IN `pname_testimonial` VARCHAR(100), IN `pprofession_testimonial` VARCHAR(100), IN `ptestimonial` TEXT)  NO SQL
 BEGIN
 	
-	IF pid_testimonials > 0 THEN
+	IF pid_testimonial > 0 THEN
 		
 		UPDATE tb_testimonials
       SET 
-        name_testimonials = pname_testimonials,
-        profession_testimonials = pprofession_testimonials,
-        testimonials = ptestimonials        
-      WHERE id_testimonials = pid_testimonials;
+        name_testimonial = pname_testimonial,
+        profession_testimonial = pprofession_testimonial,
+        testimonial = ptestimonial        
+      WHERE id_testimonial = pid_testimonial;
 
   ELSE
 
-		INSERT INTO tb_testimonials (name_testimonials, profession_testimonials, testimonials) 
-      VALUES(pname_testimonials, pprofession_testimonials, ptestimonials);
+		INSERT INTO tb_testimonials (name_testimonial, profession_testimonial, testimonial) 
+      VALUES(pname_testimonial, pprofession_testimonial, ptestimonial);
       
-      SET pid_testimonials = LAST_INSERT_ID();
+      SET pid_testimonial = LAST_INSERT_ID();
         
     END IF;
     
-    SELECT * FROM tb_testimonials WHERE id_testimonials = pid_testimonials;
+    SELECT * FROM tb_testimonials WHERE id_testimonial = pid_testimonial;
     
 END$$
 
@@ -369,14 +369,21 @@ CREATE TABLE IF NOT EXISTS `tb_clients` (
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_client`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `tb_clients`
 --
 
 INSERT INTO `tb_clients` (`id_client`, `name_client`, `site_client`, `dt_update`) VALUES
-(3, 'Record', 'www.r7.com.br', NULL);
+(1, 'myob', 'http://www.myob.com', '2020-08-18 21:05:04'),
+(2, 'Belimo', '', '2020-08-18 21:18:33'),
+(3, 'Life Groups', 'https://www.clachurch.com/lifegroups', '2020-08-18 21:22:51'),
+(4, 'Lilly', 'http://www.lilly.com', NULL),
+(5, 'citrus', 'http://www.citrus.com', NULL),
+(6, 'trustly', 'http://www.trustly.com', NULL),
+(7, 'oldendorff', 'http://www.oldendorff.com.br', NULL),
+(8, 'grabyo', 'http://www.grabyo.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -531,21 +538,26 @@ INSERT INTO `tb_team` (`id_team`, `name_team`, `function_team`, `facebook_team`,
 
 DROP TABLE IF EXISTS `tb_testimonials`;
 CREATE TABLE IF NOT EXISTS `tb_testimonials` (
-  `id_testimonials` int NOT NULL AUTO_INCREMENT,
-  `name_testimonials` varchar(100) NOT NULL,
-  `profession_testimonials` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `testimonials` text NOT NULL,
+  `id_testimonial` int NOT NULL AUTO_INCREMENT,
+  `name_testimonial` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `profession_testimonial` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `testimonial` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `dt_update` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `dt_register` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id_testimonials`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id_testimonial`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Extraindo dados da tabela `tb_testimonials`
 --
 
-INSERT INTO `tb_testimonials` (`id_testimonials`, `name_testimonials`, `profession_testimonials`, `testimonials`, `dt_update`) VALUES
-(4, 'Jeffeson', 'Tecnico', '52', NULL);
+INSERT INTO `tb_testimonials` (`id_testimonial`, `name_testimonial`, `profession_testimonial`, `testimonial`, `dt_update`) VALUES
+(1, 'Saul Goodman', 'Ceo & Founder', 'Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.', NULL),
+(2, 'Sara Wilsson', 'Designer', ' Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa. ', NULL),
+(3, 'Jena Karlis', 'Store Owner', ' Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim. ', NULL),
+(4, 'Matt Brandon', 'Freelancer', ' Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam. ', NULL),
+(5, 'John Larson', 'Entrepreneur', ' Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid. ', NULL),
+(6, 'Emily Harison', 'Store Owner', ' Eius ipsam praesentium dolor quaerat inventore rerum odio. Quos laudantium adipisci eius. Accusamus qui iste cupiditate sed temporibus est aspernatur. Sequi officiis ea et quia quidem. ', NULL);
 
 -- --------------------------------------------------------
 

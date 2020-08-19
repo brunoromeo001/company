@@ -47,8 +47,8 @@ class Testimonials extends Model{
 	{		
 		$sql = new Sql();
 		
-		$sql->query("DELETE FROM tb_testimonials WHERE id_testimonials = :id_testimonials", [
-			':id_testimonials'=>$this->getid_testimonials()
+		$sql->query("DELETE FROM tb_testimonials WHERE id_testimonial = :id_testimonial", [
+			':id_testimonial'=>$this->getid_testimonial()
 		]);
 	}
 
