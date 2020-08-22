@@ -40,7 +40,7 @@
                     <td>{$value.name_testimonial}</td>
                     <td>{$value.profession_testimonial}</td>
                     <td>{$value.testimonial}</td>
-                    <td>
+                    <td width="140px" >
                       <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalTestimonialUpdate" data-id_testimonial="{$value.id_testimonial}" data-name_testimonial="{$value.name_testimonial}" data-profession_testimonial="{$value.profession_testimonial}" data-testimonial="{$value.testimonial}"><i class="fa fa-edit"></i> Editar</button>                      
                       <a href="/admin/testimonials/{$value.id_testimonial}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>

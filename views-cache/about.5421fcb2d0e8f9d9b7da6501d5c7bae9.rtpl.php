@@ -50,84 +50,30 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
-          <h2>Our <strong>Team</strong></h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Nossa <strong>Equipe</strong></h2>
+          <p><?php echo $aboutTeam["text_about"]; ?></p>
         </div>
 
         <div class="row">
-
+          <?php $counter1=-1;  if( isset($team) && ( is_array($team) || $team instanceof Traversable ) && sizeof($team) ) foreach( $team as $key1 => $value1 ){ $counter1++; ?>
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up">
               <div class="member-img">
-                <img src="/res/assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                <img src="/res/assets/img/team/team-<?php echo $value1["id_team"]; ?>.jpg" class="img-fluid" alt="Foto ">
                 <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
+                  <a href="<?php echo $value1["twitter_team"]; ?>" target="_blank"><i class="icofont-twitter"></i></a>                  
+                  <a href="<?php echo $value1["facebook_team"]; ?>" target="_blank"><i class="icofont-facebook"></i></a>
+                  <a href="<?php echo $value1["instagram_team"]; ?>" target="_blank"><i class="icofont-instagram"></i></a>
+                  <a href="<?php echo $value1["linkedin_team"]; ?>" target="_blank"><i class="icofont-linkedin"></i></a>
                 </div>
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4><?php echo $value1["name_team"]; ?></h4>
+                <span><?php echo $value1["function_team"]; ?></span>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="/res/assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="/res/assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="/res/assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="icofont-twitter"></i></a>
-                  <a href=""><i class="icofont-facebook"></i></a>
-                  <a href=""><i class="icofont-instagram"></i></a>
-                  <a href=""><i class="icofont-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-              </div>
-            </div>
-          </div>
-
+          <?php } ?>
         </div>
 
       </div>
@@ -138,7 +84,7 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-up">
-          <h2>Our <strong>Skills</strong></h2>
+          <h2>Nossas <strong>habilidades</strong></h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
@@ -162,59 +108,26 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Clients</h2>
+          <h2>Clientes</h2>
         </div>
 
         <div class="row no-gutters clients-wrap clearfix" data-aos="fade-up">
 
+          <?php $counter1=-1;  if( isset($client) && ( is_array($client) || $client instanceof Traversable ) && sizeof($client) ) foreach( $client as $key1 => $value1 ){ $counter1++; ?>
+          <?php if( $value1["site_client"] !== '' ){ ?>
           <div class="col-lg-3 col-md-4 col-6">
             <div class="client-logo">
-              <img src="/res/assets/img/clients/client-1.png" class="img-fluid" alt="">
+              <a href="<?php echo $value1["site_client"]; ?>" target="_blank"><img src="/res/assets/img/clients/client-<?php echo $value1["id_client"]; ?>.png" class="img-fluid" alt="Logo"></a>
             </div>
           </div>
-
+          <?php }else{ ?>
           <div class="col-lg-3 col-md-4 col-6">
             <div class="client-logo">
-              <img src="/res/assets/img/clients/client-2.png" class="img-fluid" alt="">
+              <img src="/res/assets/img/clients/client-<?php echo $value1["id_client"]; ?>.png" class="img-fluid" alt="Logo">
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="/res/assets/img/clients/client-3.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="/res/assets/img/clients/client-4.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="/res/assets/img/clients/client-5.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="/res/assets/img/clients/client-6.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="/res/assets/img/clients/client-7.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-6">
-            <div class="client-logo">
-              <img src="/res/assets/img/clients/client-8.png" class="img-fluid" alt="">
-            </div>
-          </div>
-
+          <?php } ?>
+          <?php } ?>
         </div>
 
       </div>

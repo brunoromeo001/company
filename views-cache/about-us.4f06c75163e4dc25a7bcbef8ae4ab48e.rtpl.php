@@ -123,7 +123,7 @@
                     <td><?php echo $value1["id_skill"]; ?></td>         
                     <td><?php echo $value1["name_skill"]; ?></td>                    
                     <td><?php echo $value1["value_skill"]; ?>%</td>                    
-                    <td>
+                    <td width="140px">
                       <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalSkillUpdade" data-id_skill="<?php echo $value1["id_skill"]; ?>" data-name_skill="<?php echo $value1["name_skill"]; ?>" data-value_skill="<?php echo $value1["value_skill"]; ?>">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Editar 
@@ -179,7 +179,7 @@
                     <td><img src="/res/assets/img/clients/client-<?php echo $value1["id_client"]; ?>.png" alt="Logo" width="60px" height="30px"></td>
                     <?php } ?>
                     <td><?php echo $value1["name_client"]; ?></td>                    
-                    <td>
+                    <td width="140px">
                       <button type="button" class="btn btn-primary btn-xs view_data" data-toggle="modal" data-target="#modalClientUpdate" data-id_client="<?php echo $value1["id_client"]; ?>" data-name_client="<?php echo $value1["name_client"]; ?>" data-site_client="<?php echo $value1["site_client"]; ?>">
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         Editar 

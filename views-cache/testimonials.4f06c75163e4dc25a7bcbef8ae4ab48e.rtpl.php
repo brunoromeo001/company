@@ -40,7 +40,7 @@
                     <td><?php echo $value1["name_testimonial"]; ?></td>
                     <td><?php echo $value1["profession_testimonial"]; ?></td>
                     <td><?php echo $value1["testimonial"]; ?></td>
-                    <td>
+                    <td width="140px" >
                       <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modalTestimonialUpdate" data-id_testimonial="<?php echo $value1["id_testimonial"]; ?>" data-name_testimonial="<?php echo $value1["name_testimonial"]; ?>" data-profession_testimonial="<?php echo $value1["profession_testimonial"]; ?>" data-testimonial="<?php echo $value1["testimonial"]; ?>"><i class="fa fa-edit"></i> Editar</button>                      
                       <a href="/admin/testimonials/<?php echo $value1["id_testimonial"]; ?>/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>
                     </td>

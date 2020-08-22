@@ -6,6 +6,7 @@ use \Company\Model\Team;
 use \Company\Model\AboutUs;
 use \Company\Model\Skill;
 use \Company\Model\Testimonials;
+use \Company\Model\Client;
 
 $app->get('/admin/about-us', function(){
 
@@ -21,7 +22,7 @@ $app->get('/admin/about-us', function(){
 
     $skills = Skill::listAllSkills();
 
-    $clients = AboutUs::listAllClients();
+    $clients = Client::listAll();
     
     $pageAdmin->setTpl('about-us',[        
         'aboutUs'=>$aboutUs->getValues(),
@@ -46,7 +47,6 @@ $app->post('/admin/skill-update', function($id_skill){
    
 });
 
-
 $app->post('/admin/about-team', function(){
 
     $team = new Team();
@@ -58,8 +58,6 @@ $app->post('/admin/about-team', function(){
     header("Location: /admin/team");
     exit;
 });
-
-
 
 $app->post('/admin/text-skill', function(){
 
@@ -85,13 +83,14 @@ $app->post('/admin/skill/create', function(){
     exit;
 });
 
+//Rotas para Clients
 $app->post('/admin/client/create', function(){
 
-    $client = new AboutUs();
+    $client = new Client();
 
     $client->setData($_POST);     
     
-    $client->saveClient();   
+    $client->save();   
     
     if($_FILES["file"]["name"] !== "") $client->setPhoto($_FILES['file']);
 
@@ -101,11 +100,11 @@ $app->post('/admin/client/create', function(){
 
 $app->post('/admin/client/update', function($id_skill){       
 
-    $client = new AboutUs();
+    $client = new Client();
 
     $client->setData($_POST);     
     
-    $client->saveClient();   
+    $client->save();   
 
     if($_FILES["file"]["name"] !== "") $client->setPhoto($_FILES['file']);
 
@@ -114,7 +113,23 @@ $app->post('/admin/client/update', function($id_skill){
    
 });
 
+$app->get("/admin/client/{id_client}/delete", function($request, $response){		
+    
+    $id_client = $request->getAttribute('id_client');
+    
+    $intId_client = (int)$id_client;    
+    
+    $client = new Client();    
+	
+    $client->get($intId_client);  
+    
+    $client->delete();         
 
+    header("Location: /admin/about-us");
+    exit;
+});
+
+//Rotas para Team
 $app->get('/admin/team', function(){
 
     $pageAdmin = new PageAdmin();
@@ -189,22 +204,6 @@ $app->get("/admin/skills/{id_skill}/delete", function($request, $response){
     $skill->getSkills($intId_skill);  
 
     $skill->deleteSkills(); 
-
-    header("Location: /admin/about-us");
-    exit;
-});
-
-$app->get("/admin/client/{id_client}/delete", function($request, $response){		
-    
-    $id_client = $request->getAttribute('id_client');
-    
-    $intId_client = (int)$id_client;    
-    
-    $client = new AboutUs();    
-	
-    $client->getClients($intId_client);  
-    
-    $client->deleteClients();         
 
     header("Location: /admin/about-us");
     exit;
